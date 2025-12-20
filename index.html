@@ -802,7 +802,7 @@
             display: block !important;
             /* Start hidden: clipped from top */
             clip-path: inset(100% 0 0 0);
-            position: relative;
+            /* position: relative; REMOVED to allow fixed/absolute from Tailwind */
             animation: chat-reveal-up 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
         }
 
@@ -811,7 +811,7 @@
             display: block !important;
             /* Start visible */
             clip-path: inset(0 0 0 0);
-            position: relative;
+            /* position: relative; REMOVED */
             animation: chat-hide-down 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
         }
 
@@ -1918,7 +1918,7 @@
         <div id="chatbot-container" class="fixed bottom-6 right-24 z-[101] font-body w-14 h-14">
 
             <div id="chat-window"
-                class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-black/90 backdrop-blur-md border border-yellow-400/30 rounded-lg shadow-[0_0_30px_rgba(250,204,21,0.2)] overflow-hidden transition-all duration-300 origin-bottom-right">
+                class="hidden fixed md:absolute bottom-24 md:bottom-20 left-4 right-4 md:left-auto md:right-0 w-auto md:w-96 bg-black/90 backdrop-blur-md border border-yellow-400/30 rounded-lg shadow-[0_0_30px_rgba(250,204,21,0.2)] overflow-hidden transition-all duration-300 origin-bottom-right z-[102]">
 
                 <!-- Header -->
                 <div
@@ -1937,7 +1937,7 @@
 
                 <!-- Messages Area -->
                 <div id="chat-messages"
-                    class="h-80 overflow-y-auto p-4 space-y-4 bg-transparent scrollbar-thin scrollbar-thumb-yellow-400/20 scrollbar-track-transparent">
+                    class="h-64 md:h-80 overflow-y-auto p-4 space-y-4 bg-transparent scrollbar-thin scrollbar-thumb-yellow-400/20 scrollbar-track-transparent">
                     <div class="flex gap-3">
                         <div
                             class="w-8 h-8 rounded-none skew-x-[-10deg] bg-yellow-400/10 flex items-center justify-center shrink-0 border border-yellow-400/50 shadow-[0_0_10px_rgba(250,204,21,0.1)]">
