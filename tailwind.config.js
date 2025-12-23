@@ -1,25 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./*.{html,js}"], // ეს ეუბნება, რომ ფაილები ძირითად საქაღალდეშია
-  darkMode: "class",
+  content: ["./*.{html,js}"],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: "#FCEE0A", // Neon Yellow
-        "background-light": "#F0F2F5",
-        "background-dark": "#050505",
-        "surface-light": "#FFFFFF",
-        "surface-dark": "#0F0F12",
-        "accent-dark": "#1A1A1F",
+        primary: "#FFD700", // Sunny Yellow (Button/Accent)
+        secondary: "#FF7F50", // Coral Pink
+        accent: "#4169E1", // Royal Blue
+        background: "#FFFFFF", // White
+        surface: "#FFFFFF",
+        "text-main": "#1A1A1A",
+        "brand-green": "#4ADE80",
+        red: "#EF4444",
       },
       fontFamily: {
-        display: ["Orbitron", "sans-serif"],
-        body: ["Rajdhani", "sans-serif"],
+        display: ["Poppins", "sans-serif"],
+        body: ["Nunito", "sans-serif"],
         georgian: ["Noto Sans Georgian", "sans-serif"],
       },
-      backgroundImage: {
-        'grid-light': "linear-gradient(to right, #e5e7eb 1px, transparent 1px), linear-gradient(to bottom, #e5e7eb 1px, transparent 1px)",
-        'grid-dark': "linear-gradient(to right, #1f1f1f 1px, transparent 1px), linear-gradient(to bottom, #1f1f1f 1px, transparent 1px)",
+      borderRadius: {
+        DEFAULT: "1rem", // rounded-2xl feel by default
+        '3xl': '1.5rem',
+      },
+      boxShadow: {
+        'hard': '4px 4px 0px 0px #000000',
       }
     },
   },
