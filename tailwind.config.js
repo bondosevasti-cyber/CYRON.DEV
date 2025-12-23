@@ -25,6 +25,7 @@ module.exports = {
       },
       boxShadow: {
         'hard': '4px 4px 0px 0px #000000',
+        'hard-white': '4px 4px 0px 0px #ffffff',
       }
     },
   },
