@@ -95,8 +95,38 @@
     </style>
 
 
-    <link href="./dist/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script>
+        tailwind.config = {
+            darkMode: 'false', // Diabled
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FFD700", // Sunny Yellow (Button/Accent)
+                        secondary: "#FF7F50", // Coral Pink
+                        accent: "#4169E1", // Royal Blue
+                        background: "#FFFFFF", // White
+                        surface: "#FFFFFF",
+                        "text-main": "#1A1A1A",
+                        "brand-green": "#4ADE80",
+                        red: "#EF4444",
+                    },
+                    fontFamily: {
+                        display: ["Poppins", "sans-serif"],
+                        body: ["Nunito", "sans-serif"],
+                        georgian: ["Noto Sans Georgian", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem", // rounded-2xl feel by default
+                        '3xl': '1.5rem',
+                    },
+                    boxShadow: {
+                        'hard': '4px 4px 0px 0px #000000',
+                    }
+                },
+            },
+        };
+
         const translations = {
             ka: {
                 nav_home: "მთავარი",
@@ -942,7 +972,7 @@
             </div>
         </div>
     </header>
-    <main class="relative z-10 pt-20">
+    <main class="relative z-10 pt-40 md:pt-20">
         <section class="min-h-[90vh] flex items-center justify-center relative px-6 bg-white" id="home">
             <div class="max-w-7xl w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8 relative animate-entrance">
@@ -972,10 +1002,7 @@
                         </button>
 
                     </div>
-                    <div class="pt-12 flex items-center gap-4 text-sm font-display font-bold text-gray-400">
-                        <span class="material-icons-round text-black animate-bounce">mouse</span>
-                        <span data-key="scroll_down" class="text-black">ჩამოსქროლე</span>
-                    </div>
+
                 </div>
 
                 <!-- Hero Image / Illustration Area -->
