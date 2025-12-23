@@ -95,38 +95,9 @@
     </style>
 
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'false', // Diabled
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#FFD700", // Sunny Yellow (Button/Accent)
-                        secondary: "#FF7F50", // Coral Pink
-                        accent: "#4169E1", // Royal Blue
-                        background: "#FFFFFF", // White
-                        surface: "#FFFFFF",
-                        "text-main": "#1A1A1A",
-                        "brand-green": "#4ADE80",
-                        red: "#EF4444",
-                    },
-                    fontFamily: {
-                        display: ["Poppins", "sans-serif"],
-                        body: ["Nunito", "sans-serif"],
-                        georgian: ["Noto Sans Georgian", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "1rem", // rounded-2xl feel by default
-                        '3xl': '1.5rem',
-                    },
-                    boxShadow: {
-                        'hard': '4px 4px 0px 0px #000000',
-                    }
-                },
-            },
-        };
+    <link href="./dist/output.css" rel="stylesheet">
 
+    <script>
         const translations = {
             ka: {
                 nav_home: "მთავარი",
@@ -135,7 +106,7 @@
                 nav_contact: "კონტაქტი",
                 btn_hire_me: "დამიქირავე",
                 hero_title: "Web Development & Live Launch",
-                hero_desc: "ვაწყობ საიტს ნოლიდან და გაბარებთ უკვე ჩართულს. ჩემს მომსახურებაში შედის ყველაფერი: კოდი, ჰოსტინგი, დომენი და SSL. მთავარი პირობა: ნულოვანი თავის ტკივილი თქვენთვის.",
+                hero_desc: "ვაწყობ საიტს ნოლიდან და გაბარებთ უკვე ჩართულს. ჩემს მომსახურებაში შედის ყველაფერი: კოდი, ჰოსტინგი, დომენი და SSL.მთავარი პირობა: ნულოვანი თავის ტკივილი თქვენთვის.",
                 btn_my_work: "ჩემი ნამუშევრები",
                 btn_cv: "CV / რეზიუმე",
                 scroll_down: "ჩამოსქროლე",
@@ -234,7 +205,7 @@
                 nav_contact: "Contact",
                 btn_hire_me: "Hire Me",
                 hero_title: "Web Development & Live Launch",
-                hero_desc: "I build the site from scratch and hand it over fully live. My service includes everything: code, hosting, domain, and SSL. Main condition: Zero headache for you.   ",
+                hero_desc: "I build the site from scratch and hand it over fully live. My service includes everything: code, hosting, domain, and SSL. Main condition: Zero headache for you.",
                 btn_my_work: "My Work",
                 btn_cv: "CV / Resume",
                 scroll_down: "SCROLL DOWN",
@@ -285,7 +256,7 @@
                 p1_desc: "A professional brochure website designed for a custom furniture brand. This is a front-end only project without a backend, highlighting elegant product showcasing and seamless user experience.",
                 p_portfolio: "Portfolio",
                 p_live: "Live",
-                p2_desc: " A professional service website designed for electrical works. This is a frontend-only project without a backend, structured to effectively showcase services and facilitate client contact",
+                p2_desc: "A professional service website designed for electrical works. This is a frontend-only project without a backend, structured to effectively showcase services and facilitate client contact",
                 p_app: "Landing Page",
                 p_dev: "In Development",
                 p3_desc: "A fully responsive front-end interface for an online plant shop. Designed as a static demo without a backend, emphasizing modern UI/UX principles and clean visual aesthetics.",
@@ -322,7 +293,7 @@
                 // Profile Section
                 profile_name: "Mate Akhalaia",
                 profile_role: "Web Developer",
-                profile_desc: "I build digital products from concept to launch. My goal is to save you time and energy: I handle everything from building your site from scratch to technical configuration and live deployment with all necessary parameters (Hosting, Domain, SSL).",
+                profile_desc: "I build digital products from concept to launch. My goal is to save you time and energy: I handle everything from building your site from scratch to technical configuration and live deployment with all necessary parameters(Hosting, Domain, SSL).",
                 chat_q1: "How do I place an order?",
                 chat_q2: "What services do you have?"
             }
@@ -341,16 +312,11 @@
                 element.innerText = newText
                     .split("")
                     .map((letter, index) => {
-                        if (index < iteration) {
-                            return newText[index];
-                        }
-                        return chars[Math.floor(Math.random() * chars.length)];
+                        if (index < iteration) { return newText[index]; } return chars[Math.floor(Math.random() * chars.length)];
                     })
-                    .join("");
-
-                if (iteration >= newText.length) {
-                    clearInterval(element.interval);
-                }
+                    .join(""); if (iteration >= newText.length) {
+                        clearInterval(element.interval);
+                    }
 
                 iteration += 5; // Faster speed: 1 character per tick (30ms)
             }, 30);
