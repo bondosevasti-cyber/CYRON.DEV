@@ -41,7 +41,7 @@
             background-color: rgba(5, 5, 5, 0.8);
         }
     </style>
-
+    <link rel="preload" as="image" href="images/favor_logo.webp">
     <title>cyron.dev</title>
 
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -51,12 +51,8 @@
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;700;900&family=Quicksand:wght@300;400;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-    <link rel="icon" href="images/favor_logo.png" type="image/png" sizes="16x16">
-    <link rel="icon" href="images/favor_logo.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="images/favor_logo.png" type="image/png" sizes="48x48">
-    <link rel="icon" href="images/favor_logo.png" type="image/png" sizes="96x96">
-    <link rel="apple-touch-icon" href="images/favor_logo.png">
-    <meta name="thumbnail" content="https://cyron.dev/images/cover.png">
+    <link rel="icon" type="image/png" href="images/favor_logo.webp" />
+    <link rel="apple-touch-icon
     <meta name=" description"
         content="Affordable, high-quality web development services powered by AI. We build modern websites, portfolios, and landing pages for clients globally. Fast delivery and competitive prices. | ვებსაიტების დამზადება ხელმისაწვდომ ფასად AI ტექნოლოგიების გამოყენებით. გლობალური მომსახურება, სწრაფი და ხარისხიანი შედეგი.">
 
@@ -200,7 +196,8 @@
                 profile_role: " Web Developer",
                 profile_desc: "მე ვქმნი ციფრულ პროდუქტებს იდეიდან რეალურ გაშვებამდე. ჩემი მიზანია, დაგიზოგოთ დრო და ენერგია: მე მოვახერხებ თქვენი საიტის ნოლიდან აწყობას, მის ტექნიკურ გამართვას და საჯაროდ გაშვებას (Live Deployment) ყველა საჭირო პარამეტრით (Hosting, Domain, SSL).",
                 chat_q1: "რა გავაკეთო შეკვეთის გასაფორმებლად?",
-                chat_q2: "რა სერვისები გაქვთ?"
+                chat_q2: "რა სერვისები გაქვთ?",
+                social_unavailable: "ჯერ მიუწვდომელია"
             },
             en: {
                 nav_home: "Home",
@@ -299,7 +296,8 @@
                 profile_role: "Web Developer",
                 profile_desc: "I build digital products from concept to launch. My goal is to save you time and energy: I handle everything from building your site from scratch to technical configuration and live deployment with all necessary parameters(Hosting, Domain, SSL).",
                 chat_q1: "How do I place an order?",
-                chat_q2: "What services do you have?"
+                chat_q2: "What services do you have?",
+                social_unavailable: "Not available yet"
             }
         };
 
@@ -340,7 +338,9 @@
                 elements.forEach(el => {
                     const key = el.getAttribute('data-key');
                     if (translations[lang][key]) {
-                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        if (el.getAttribute('data-target') === 'title') {
+                            el.title = translations[lang][key];
+                        } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                             el.placeholder = translations[lang][key];
                         } else {
                             el.innerText = translations[lang][key];
@@ -1559,6 +1559,22 @@
                                         <span
                                             class="text-[10px] font-bold uppercase tracking-wider text-gray-600 group-hover:text-black transition-colors">Viber</span>
                                     </a>
+
+                                    <!-- Facebook (Unavailable) -->
+                                    <div class="flex flex-col items-center gap-2 group cursor-not-allowed"
+                                        title="ჯერ მიუწვდომელია" data-key="social_unavailable" data-target="title">
+                                        <div
+                                            class="w-12 h-12 bg-[#1877F2] border-2 border-black rounded-full flex items-center justify-center text-white shadow-hard">
+                                            <span class="sr-only">Facebook</span>
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.47h3.047v-2.612c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.491 0-1.956.925-1.956 1.874v2.22h3.328l-.532 3.47h-2.796v8.385c5.737-.9 10.125-5.864 10.125-11.854z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span
+                                            class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Facebook</span>
+                                    </div>
 
                                 </div>
                             </div>
