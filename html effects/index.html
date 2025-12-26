@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyron 4K Matrix</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffffff; /* სუფთა თეთრი ფონი */
+            font-family: 'Nunito', sans-serif;
+        }
+
+        canvas {
+            display: block;
+            /* ეს უზრუნველყოფს, რომ ტილო არ გაიწელოს ვიზუალურად, არამედ დაჯდეს ეკრანზე */
+            width: 100vw; 
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="alegriaMatrix"></canvas>
+
+    <script>
+        const canvas = document.getElementById('alegriaMatrix');
+        const ctx = canvas.getContext('2d');
+
+        // 🎨 ფერების პალიტრა (Cyron Logo Colors)
+        const colors = [
+            '#FF4F58', // Red/Pink
+            '#2D7FF9', // Blue
+            '#2ECC71', // Green
+            '#FDC830', // Yellow
+            '#FF9F1C', // Orange
+            '#103842'  // Deep Teal (კონტრასტისთვის)
+        ];
+
+        let fontSize = 24; // შრიფტის ზომა (ოდნავ გავზარდე)
+        let columns;
+        let drops = [];
+
+        // ⚙️ 4K / Retina კონფიგურაცია
+        function resizeCanvas() {
+            // ვიღებთ ეკრანის პიქსელების სიმჭიდროვეს (Retina-ზე არის 2, ახალ ტელეფონებზე 3)
+            const dpr = window.devicePixelRatio || 1;
+
+            // ტილოს ფიზიკურ ზომას ვზრდით ხარისხის მიხედვით
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+
+            // ყველა ხატვის ოპერაციას ვასკეილირებთ, რომ ზომები სწორი დარჩეს
+            ctx.scale(dpr, dpr);
+
+            // სვეტების გადათვლა
+            columns = Math.ceil(window.innerWidth / fontSize);
+            
+            // მასივის შევსება (თუ ახალია)
+            if (drops.length === 0) {
+                for (let x = 0; x < columns; x++) {
+                    drops[x] = Math.random() * -100; // სხვადასხვა სიმაღლიდან დაწყება
+                }
+            }
+        }
+
+        // სიმბოლოები
+        const chars = "0123456789"; 
+
+        // ⏱️ სიჩქარის კონტროლი
+        let fps = 20; // შეცვალე ეს რიცხვი სიჩქარისთვის (დაბალი = ნელი, მაღალი = სწრაფი)
+        let now;
+        let then = Date.now();
+        let interval = 1000 / fps;
+        let delta;
+
+        function draw() {
+            // ანიმაციის ციკლის მოთხოვნა
+            requestAnimationFrame(draw);
+
+            now = Date.now();
+            delta = now - then;
+
+            // თუ საკმარისი დრო გავიდა, ვხატავთ ახალ კადრს
+            if (delta > interval) {
+                then = now - (delta % interval);
+
+                // 1. ფონი (Fade effect) - მაღალი ხარისხისთვის RGB-ს ვიყენებთ
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.18)'; 
+                ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+                // 2. ტექსტის პარამეტრები
+                ctx.font = "900 " + fontSize + "px 'Nunito'";
+                ctx.textAlign = "center";
+                
+                // 3. ციფრების ხატვა
+                for (let i = 0; i < drops.length; i++) {
+                    // ფერის არჩევა
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    ctx.fillStyle = randomColor;
+
+                    // სიმბოლოს არჩევა
+                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+
+                    // ხატვა (X: სვეტი * ზომა, Y: წვეთი * ზომა)
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    // 4. პოზიციის განახლება
+                    // თუ გასცდა ეკრანს, შემთხვევით ვაბრუნებთ ზევით
+                    if (drops[i] * fontSize > window.innerHeight && Math.random() > 0.98) {
+                        drops[i] = 0;
+                    }
+
+                    drops[i]++;
+                }
+            }
+        }
+
+        // ინიციალიზაცია
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas); // ზომის შეცვლისას ხარისხის შენარჩუნება
+        
+        // ფონტის ჩატვირთვის ლოდინი (რომ თავიდანვე მრგვალი იყოს)
+        document.fonts.ready.then(function () {
+            draw();
+        });
+
+    </script>
+</body>
+</html>

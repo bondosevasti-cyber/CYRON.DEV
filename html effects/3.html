@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Antigravity Liftoff Effect</title>
+    <style>
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background-color: #ffffff; /* თეთრი ფონი, როგორც სქრინზე */
+        }
+        canvas { 
+            display: block; 
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+</head>
+<body>
+
+<script type="module">
+    import * as THREE from 'three';
+
+    // 1. სცენის მომზადება
+    const scene = new THREE.Scene();
+    // სქრინშოთის მიხედვით ფონი თეთრია, მაგრამ შეგვიძლია ოდნავ მოლურჯო-თეთრი გავაკეთოთ სიღრმისთვის
+    scene.background = new THREE.Color(0xffffff); 
+    scene.fog = new THREE.FogExp2(0xffffff, 0.002); // ნისლი, რომ შორს წასული ხაზები გაქრეს
+
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 100; // კამერის პოზიცია
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio); // მაღალი ხარისხი ეკრანებისთვის
+    document.body.appendChild(renderer.domElement);
+
+    // 2. ფერების პალიტრა (Antigravity IDE-ის ლურჯი ტონები)
+    const colors = [
+        0x4285F4, // Google Blue
+        0x8AB4F8, // Light Blue
+        0x1967D2, // Darker Blue
+        0xD2E3FC  // Very Light Blue
+    ];
+
+    // 3. ნაწილაკების შექმნა (არა წერტილები, არამედ "ტირეები")
+    // ვიყენებთ InstancedMesh-ს, რადგან ათასობით ხაზი გვჭირდება და ეს ყველაზე სწრაფი მეთოდია
+    const count = 2000;
+    
+    // გეომეტრია: თხელი, გრძელი მართკუთხედი (ტირე)
+    const geometry = new THREE.BoxGeometry(0.5, 0.5, 4); 
+    const material = new THREE.MeshBasicMaterial({ color: 0xffffff }); // ფერს ინდივიდუალურად მივანიჭებთ
+    
+    const instancedMesh = new THREE.InstancedMesh(geometry, material, count);
+    
+    const dummy = new THREE.Object3D();
+    const color = new THREE.Color();
+    
+    // მონაცემები თითოეული ნაწილაკისთვის (საწყისი პოზიცია და სიჩქარე)
+    const particlesData = [];
+
+    for (let i = 0; i < count; i++) {
+        // შემთხვევითი პოზიციები დიდ სივრცეში
+        const x = (Math.random() - 0.5) * 400;
+        const y = (Math.random() - 0.5) * 400;
+        const z = (Math.random() - 0.5) * 400;
+
+        dummy.position.set(x, y, z);
+        
+        // ყველა ტირე მიმართულია Z ღერძის გასწვრივ (როგორც ვარპის ხაზები)
+        // ან შეგვიძლია ოდნავ დავხაროთ ქაოტურობისთვის
+        dummy.rotation.x = Math.random() * Math.PI;
+        dummy.rotation.y = Math.random() * Math.PI;
+        
+        // ზომების ვარიაცია (ზოგი გრძელი ტირეა, ზოგი მოკლე)
+        const scale = Math.random() * 0.5 + 0.5;
+        dummy.scale.set(scale, scale, scale * (Math.random() * 5 + 1)); // Z-ზე გაწელვა
+
+        dummy.updateMatrix();
+        instancedMesh.setMatrixAt(i, dummy.matrix);
+
+        // შემთხვევითი ფერის მინიჭება პალიტრიდან
+        color.setHex(colors[Math.floor(Math.random() * colors.length)]);
+        instancedMesh.setColorAt(i, color);
+
+        // მონაცემების შენახვა ანიმაციისთვის
+        particlesData.push({
+            velocity: (Math.random() * 0.1) + 0.05, // სიჩქარე (Slow Mo)
+            x: x,
+            y: y,
+            z: z,
+            rotationSpeed: (Math.random() - 0.5) * 0.004 // ნელი ბრუნვა
+        });
+    }
+
+    scene.add(instancedMesh);
+
+
+    // 4. მაუსის ინტერაქცია (პერსპექტივის შეცვლა)
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    // სამიზნე როტაცია (რბილი მოძრაობისთვის)
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+
+    window.addEventListener('mousemove', (event) => {
+        // ნორმალიზებული კოორდინატები -1 დან 1 მდე
+        mouseX = (event.clientX - window.innerWidth / 2) * 0.001;
+        mouseY = (event.clientY - window.innerHeight / 2) * 0.001;
+    });
+
+
+    // 5. ანიმაცია
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // კამერის/სცენის რბილი მოძრაობა მაუსის მიხედვით
+        targetRotationX += (mouseX - targetRotationX) * 0.05;
+        targetRotationY += (mouseY - targetRotationY) * 0.05;
+
+        // მთლიანი სისტემის ტრიალი (Liftoff ეფექტი)
+        instancedMesh.rotation.y += 0.0005; // მუდმივი ნელი ბრუნვა (Slow Mo)
+        instancedMesh.rotation.x = targetRotationY; // პოზიციაზე დამოკიდებული გადახრა (და არა სიჩქარის მომატება)
+        instancedMesh.rotation.z = -targetRotationX;
+
+        // თითოეული ნაწილაკის განახლება
+        for (let i = 0; i < count; i++) {
+            const data = particlesData[i];
+
+            // მოძრაობა "კამერისკენ" ან "მაღლა"
+            data.z += data.velocity; 
+            
+            // თუ ნაწილაკი კამერას გასცდა (ძალიან ახლოს მოვიდა), გადავაგდოთ უკან
+            if (data.z > 200) {
+                data.z = -200;
+                // ასევე შევუცვალოთ X და Y, რომ ახალი ეფექტი ჰქონდეს
+                data.x = (Math.random() - 0.5) * 400;
+                data.y = (Math.random() - 0.5) * 400;
+            }
+
+            dummy.position.set(data.x, data.y, data.z);
+            
+            // ტირეების მიმართულება - ყოველთვის "მოძრაობის" მიმართულებით უნდა იყურებოდნენ
+            // აქ ვქმნით ეფექტს, რომ ისინი ცენტრიდან გამოდიან
+            dummy.lookAt(0, 0, 2000); // ყველა იყურება შორს
+            
+            // მასშტაბის აღდგენა (რადგან lookAt-მა შეიძლება შეცვალოს მატრიცა)
+            // აქ მარტივად ვტოვებთ იმავე როტაციას რაც ინიციალიზაციისას იყო, პლუს მცირე ბრუნვა
+            dummy.rotation.z += data.rotationSpeed;
+
+            dummy.updateMatrix();
+            instancedMesh.setMatrixAt(i, dummy.matrix);
+        }
+
+        instancedMesh.instanceMatrix.needsUpdate = true;
+        renderer.render(scene, camera);
+    }
+
+    // რესაიზი
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    animate();
+
+</script>
+</body>
+</html>
