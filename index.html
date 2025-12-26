@@ -148,8 +148,10 @@
                 tech_title: "ტექნიკური",
                 tech_profit: "გამოცდილება",
                 tech_desc: "მუდმივად ვაახლებ ჩემს ცოდნას უახლესი ტექნოლოგიებით. მაღალი გამოცდილება ფრონტენდ არქიტექტურასა და დიზაინ სისტემებში.",
+                projects_intro: "ნამუშევრები",
                 projects_title: "გამორჩეული",
                 projects_span: "პროექტები",
+                projects_desc: "თითოეული პროექტი არის უნიკალური გადაწყვეტა, მორგებული კონკრეტულ საჭიროებებზე.",
                 p_ecommerce: "E-COMMERCE",
                 p_deployed: "გაშვებულია",
                 p_view_case: "ქეისის ნახვა",
@@ -160,6 +162,9 @@
                 p_app: "აპლიკაცია",
                 p_dev: "მუშავდება",
                 p3_desc: "რეალურ დროში კრიპტოვალუტის თვალყურის დევნების აპლიკაცია WebSocket API-ს გამოყენებით.",
+                current_works_title: "მიმდინარე სამუშაოები",
+                cw_desc: "პროექტები, რომლებიც ამჟამად მუშავდება და მალე გაეშვება.",
+                p_newcarge_desc: "ავტომობილის დისტანციური მომსახურება ევაკუატორი, დითეილინგი, დიაგნოსტიკა,— ყველაფერი ერთ ეკოსისტემაში.",
                 cta_title: "მზად ხარ შენი პროექტის დასაწყებად?",
                 cta_sub: "ვითანამშრომლოთ რამე განსაკუთრებულის შესაქმნელად.",
                 cta_btn: "საუბრის დაწყება",
@@ -249,8 +254,10 @@
                 tech_profit: "Proficiency",
                 tech_desc: "Constantly upgrading my neural network with the latest technologies. High proficiency in frontend architecture and design systems.",
                 tech_ai_desc: "Leveraging AI tools to streamline workflow and accelerate development cycles.",
+                projects_intro: "Works",
                 projects_title: "Featured",
                 projects_span: "Projects",
+                projects_desc: "Each project is a unique solution, tailored to specific needs.",
                 p_ecommerce: "E-Commerce",
                 p_deployed: "Deployed",
                 p_view_case: "View Case Study",
@@ -261,6 +268,9 @@
                 p_app: "Landing Page",
                 p_dev: "In Development",
                 p3_desc: "A fully responsive front-end interface for an online plant shop. Designed as a static demo without a backend, emphasizing modern UI/UX principles and clean visual aesthetics.",
+                current_works_title: "Current Works",
+                cw_desc: "Projects currently under development and launching soon.",
+                p_newcarge_desc: "Remote carservice. Evacuator, Detailing, Diagnostics — everything in one ecosystem.",
                 cta_title: "Ready to initiate your project?",
                 cta_sub: "Let's collaborate to build something extraordinary.",
                 cta_btn: "Start a Conversation",
@@ -1364,9 +1374,48 @@
                             </a>
                         </div>
                     </div>
+                </div>
 
+                <!-- Current Works Section -->
+                <div style="margin-top: 40px; margin-bottom: 70px;">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="h-1 w-12 bg-black rounded-full"></span>
+                        <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
+                            data-key="current_works_title">მიმდინარე სამუშაოები</span>
+                    </div>
+                    <p class="text-gray-600 text-lg font-medium max-w-2xl" data-key="cw_desc">
+                        პროექტები, რომლებიც ამჟამად მუშავდება და მალე გაეშვება.
+                    </p>
+                </div>
 
-
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- NewCarGe Project -->
+                    <div
+                        class="group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
+                        <div class="h-56 bg-gray-100 relative overflow-hidden border-b-2 border-black">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                style="background-image: url('wweb-collection%20image/NewCarGe.jpeg');"></div>
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span
+                                    class="bg-white border-2 border-black text-black text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider"
+                                    data-key="p_dev">მუშავდება</span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-display font-black text-black mb-3">NewCarGe</h3>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed font-medium"
+                                data-key="p_newcarge_desc">
+                                ავტომობილის დისტანციური
+                                მომსახურება
+                                ევაკუატორი, დითეილინგი, დიაგნოსტიკა,— ყველაფერი ერთ ეკოსისტემაში.
+                            </p>
+                            <a class="inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-black hover:text-primary transition-colors border-2 border-transparent hover:border-b-black pb-1"
+                                href="https://www.newcarge.com/" target="_blank">
+                                <span data-key="p_view_case">ქეისის ნახვა</span>
+                                <span class="material-icons-round text-lg">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
         </section>
 
