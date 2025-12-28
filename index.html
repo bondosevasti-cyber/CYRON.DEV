@@ -1432,7 +1432,7 @@
             <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 relative z-10">
                 <!-- Contact Info -->
                 <div
-                    class="space-y-12 bg-white/50 backdrop-blur-md border-2 border-black p-6 md:p-10 rounded-3xl shadow-hard">
+                    class="space-y-12 bg-white/50 backdrop-blur-md border-2 border-black p-5 md:p-10 rounded-3xl shadow-hard">
                     <div>
                         <h2 class="text-4xl md:text-6xl font-display font-black text-black mb-6"
                             data-key="contact_title">კონტაქტი</h2>
@@ -1442,17 +1442,17 @@
                     </div>
 
                     <div class="space-y-8">
-                        <div class="flex items-start gap-6 group">
+                        <div class="flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
                             <div
                                 class="w-14 h-14 bg-white border-2 border-black rounded-xl flex items-center justify-center text-black shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
                                 <span class="material-icons-round text-2xl">email</span>
                             </div>
-                            <div>
+                            <div class="min-w-0">
                                 <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1"
                                     data-key="contact_info_email">ელ-ფოსტა</p>
                                 <div class="flex items-center gap-3">
                                     <a href="mailto:contact@cyron.dev" id="contact-email"
-                                        class="text-lg md:text-xl font-display font-bold text-black hover:text-primary transition-colors">contact@cyron.dev</a>
+                                        class="text-lg md:text-xl font-display font-bold text-black hover:text-primary transition-colors break-all">contact@cyron.dev</a>
                                     <button onclick="copyToClipboard('contact@cyron.dev', this)"
                                         class="text-gray-400 hover:text-primary transition-colors p-1"
                                         title="Copy Email">
@@ -1465,17 +1465,17 @@
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-6 group">
+                        <div class="flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
                             <div
                                 class="w-14 h-14 bg-white border-2 border-black rounded-xl flex items-center justify-center text-black shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
                                 <span class="material-icons-round text-2xl">phone</span>
                             </div>
-                            <div>
+                            <div class="min-w-0">
                                 <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1"
                                     data-key="contact_info_phone">ტელეფონი</p>
                                 <div class="flex items-center gap-3">
                                     <a href="tel:+995598173130" id="contact-phone"
-                                        class="text-lg md:text-xl font-display font-bold text-black hover:text-primary transition-colors">+995
+                                        class="text-lg md:text-xl font-display font-bold text-black hover:text-primary transition-colors break-all">+995
                                         598 17 31 30</a>
                                     <button onclick="copyToClipboard('+995 598 17 31 30', this)"
                                         class="text-gray-400 hover:text-primary transition-colors p-1"
@@ -1514,7 +1514,7 @@
                                 data-key="contact_info_social">სოციალური ქსელები</p>
                             <div class="flex gap-4">
 
-                                <div class="flex gap-4 justify-center md:justify-start">
+                                <div class="flex flex-wrap gap-4 md:gap-6 justify-center md:justify-start">
 
                                     <!-- LinkedIn -->
                                     <a class="flex flex-col items-center gap-2 group"
