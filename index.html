@@ -871,6 +871,48 @@
             /* Start hidden */
             animation: slide-up-fade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
+        /* Project Modal Styles */
+        #project-modal {
+            z-index: 9999 !important;
+            display: flex !important;
+            visibility: hidden;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            padding: 20px;
+        }
+
+        #project-modal.open {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #project-modal-content {
+            max-height: 90vh;
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #000;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
     </style>
 </head>
 
@@ -1332,11 +1374,12 @@
                             <p class="text-gray-600 text-sm mb-6 leading-relaxed font-medium" data-key="p1_desc">
                                 "ავეჯის ბრენდის სავიზიტო ვებსაიტი. დახვეწილი დიზაინი და კომფორტული ნავიგაცია."
                             </p>
-                            <a class="inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-black hover:text-primary transition-colors border-2 border-transparent hover:border-b-black pb-1"
-                                href="https://bondosevasti-cyber.github.io/wood-artist/" target="_blank">
+                            <button
+                                class="project-view-btn inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-black hover:text-primary transition-colors border-2 border-transparent hover:border-b-black pb-1"
+                                data-image="wweb-collection%20image/WOOD_ARTIST.png" data-title="Wood Artist">
                                 <span data-key="p_view_case">ქეისის ნახვა</span>
                                 <span class="material-icons-round text-lg">arrow_outward</span>
-                            </a>
+                            </button>
                         </div>
                     </div>
 
@@ -1367,11 +1410,12 @@
                             <p class="text-gray-600 text-sm mb-6 leading-relaxed font-medium" data-key="p2_desc">
                                 "ელექტრო-ტექნიკური მომსახურების სავიზიტო ვებსაიტი. ვიზუალურად წარმოაჩენს სერვისებს."
                             </p>
-                            <a class="inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-black hover:text-primary transition-colors border-2 border-transparent hover:border-b-black pb-1"
-                                href="https://bondosevasti-cyber.github.io/Electro-Pro/" target="_blank">
+                            <button
+                                class="project-view-btn inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-black hover:text-primary transition-colors border-2 border-transparent hover:border-b-black pb-1"
+                                data-image="wweb-collection%20image/ELECTRO_PRO.png" data-title="Electro-Pro">
                                 <span data-key="p_view_case">ქეისის ნახვა</span>
                                 <span class="material-icons-round text-lg">arrow_outward</span>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1699,6 +1743,41 @@
         </div>
     </div>
 
+    <!-- Project Image Modal -->
+    <div id="project-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-all duration-300">
+
+        <!-- Modal Container -->
+        <div id="project-modal-content"
+            class="relative bg-white border-2 md:border-4 border-black rounded-2xl md:rounded-3xl shadow-hard flex flex-col overflow-hidden transition-transform duration-300 scale-95">
+
+            <!-- Close Button (Inside & Styled) -->
+            <button onclick="closeProjectModal()"
+                class="absolute top-3 right-3 md:top-5 md:right-5 text-white border-2 border-black rounded-full p-2 hover:bg-red-700 transition-all z-[210] shadow-hard flex items-center justify-center"
+                style="background-color: #FF0000 !important;">
+                <span class="material-icons-round text-xl md:text-2xl">close</span>
+            </button>
+
+            <!-- Internal Scrollable Area -->
+            <div id="project-modal-scroll"
+                class="flex-1 overflow-y-auto overflow-x-hidden bg-gray-100 custom-scrollbar">
+                <img id="project-modal-img" src="" alt="Project Preview" class="w-full h-auto block">
+            </div>
+
+            <!-- Bottom Aesthetic Bar -->
+            <div
+                class="h-10 md:h-12 bg-white border-t-2 border-black flex items-center px-4 md:px-6 justify-between shrink-0">
+                <span id="project-modal-title"
+                    class="font-display font-black text-[10px] md:text-sm uppercase tracking-widest text-black truncate mr-4">PROJECT
+                    PREVIEW</span>
+                <div class="flex gap-1 md:gap-2">
+                    <div class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-red-500 border border-black"></div>
+                    <div class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-yellow-400 border border-black"></div>
+                    <div class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500 border border-black"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ფანჯრის მართვა
         // ფანჯრის მართვა
@@ -1711,6 +1790,91 @@
             const modal = document.getElementById('hire-me-modal');
             modal.classList.remove('open');
         }
+
+        // Project Modal Functions
+        function openProjectModal(imgSrc, title) {
+            console.log("Attempting to open modal for:", title);
+            console.log("Image path used:", imgSrc);
+
+            const modal = document.getElementById('project-modal');
+            const img = document.getElementById('project-modal-img');
+            const titleElem = document.getElementById('project-modal-title');
+            const scrollContainer = document.getElementById('project-modal-scroll');
+            const content = document.getElementById('project-modal-content');
+
+            if (!modal || !img) {
+                console.error("Modal or Image element not found in DOM!");
+                return;
+            }
+
+            // Error handling for image loading
+            img.onerror = function () {
+                console.error("FAILED to load image at:", imgSrc);
+                alert("შეცდომა: ფოტოს ჩატვირთვა ვერ მოხერხდა. მისამართი: " + imgSrc);
+            };
+
+            img.onload = function () {
+                console.log("Successfully loaded image:", imgSrc);
+            };
+
+            img.src = imgSrc;
+            titleElem.innerText = title;
+            scrollContainer.scrollTop = 0; // Reset scroll
+
+            modal.classList.add('open');
+            setTimeout(() => {
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+
+            document.body.style.overflow = 'hidden'; // Prevent body scroll
+        }
+
+        function closeProjectModal() {
+            console.log("Closing project modal");
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('project-modal-content');
+
+            if (!modal) return;
+
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.remove('open');
+                document.body.style.overflow = ''; // Restore body scroll
+            }, 300);
+        }
+
+        // Initialize Project Buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM fully loaded. Initializing project buttons...");
+            const buttons = document.querySelectorAll('.project-view-btn');
+            console.log("Found " + buttons.length + " project buttons.");
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const img = btn.getAttribute('data-image');
+                    const title = btn.getAttribute('data-title');
+                    console.log("Button clicked. Title:", title, "Image:", img);
+                    openProjectModal(img, title);
+                });
+            });
+        });
+
+        // Close project modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProjectModal();
+        });
+
+        // Close project modal on background click
+        document.getElementById('project-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'project-modal') {
+                console.log("Background clicked, closing modal.");
+                closeProjectModal();
+            }
+        });
 
         // ტელეფონის ფორმატირება
         document.getElementById('hire-phone')?.addEventListener('input', function (e) {
