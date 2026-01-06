@@ -15,7 +15,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <style>
         /* Critical CSS for Instant Paint */
-        html,
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             /* background-color: #050505 !important; REMOVED for light mode */
             /* color: #ffffff; REMOVED for light mode */
@@ -25,6 +28,8 @@
             font-family: sans-serif;
             /* System font fallback */
         }
+
+        section {}
 
         /* Hide grid background initially to save render time */
         .fixed.inset-0.z-0 {
@@ -48,7 +53,7 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://cdn.tailwindcss.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&family=Poppins:wght@400;500;700;900&family=Quicksand:wght@300;400;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&family=Poppins:wght@400;500;700;900&family=Quicksand:wght@300;400;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
     <link rel="icon" type="image/png" href="images/favor_logo.png?v=2" />
@@ -450,6 +455,8 @@
             box-shadow: 0 0 5px rgba(252, 238, 10, 0.2), 0 0 20px rgba(252, 238, 10, 0.1);
         }
 
+
+
         /* Glitch Removed */
 
         .float {
@@ -631,19 +638,7 @@
             will-change: transform, opacity;
         }
 
-        /* Variable Proximity Text Engine Styles */
-        .proximity-text {
-            font-family: 'Roboto Flex', sans-serif !important;
-        }
 
-        .proximity-char {
-            display: inline-block;
-            white-space: pre;
-            will-change: font-variation-settings;
-            font-variation-settings: 'wght' 400;
-            transition: none !important;
-            /* Force JS to handle all frames */
-        }
 
         /* Scroll Float Animation Styles */
         .scroll-float {
@@ -1054,22 +1049,22 @@
                 <div class="space-y-8 relative animate-entrance">
                     <!-- Decorator -->
                     <div
-                        class="inline-flex items-center gap-2 px-4 py-2 border-2 border-black rounded-full bg-secondary text-white shadow-hard shadow-black">
+                        class=" inline-flex items-center gap-2 px-4 py-2 border-2 border-black rounded-full bg-secondary text-white shadow-hard shadow-black">
                         <span class="material-icons-round text-sm">rocket_launch</span>
                         <span class="text-xs font-display font-bold uppercase tracking-widest">Ready for Launch</span>
                     </div>
 
-                    <h1 class="scroll-float proximity-text font-display font-black text-4xl sm:text-5xl md:text-7xl leading-tight text-black"
+                    <h1 class=" font-display font-black text-4xl sm:text-5xl md:text-7xl leading-tight text-black"
                         data-key="hero_title">
                         Web Development & Live Launch
                     </h1>
-                    <p class="text-lg md:text-xl text-gray-700 max-w-lg font-medium leading-relaxed proximity-text"
+                    <p class=" text-lg md:text-xl text-gray-700 max-w-lg font-medium leading-relaxed"
                         data-key="hero_desc">
                         ციფრული არქიტექტორი, რომელიც ქმნის შთამბეჭდავ ვებ გამოცდილებას. კოდისა და კრეატიულობის
                         შერწყმა მომავლის ინტერფეისის შესაქმნელად.
                     </p>
 
-                    <div class="flex flex-wrap gap-4 pt-4">
+                    <div class=" flex flex-wrap gap-4 pt-4">
                         <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
                             class="bg-accent text-white font-display font-bold px-8 py-4 rounded-full border-2 border-black shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center gap-2 group">
                             <span data-key="btn_my_work">ჩემი ნამუშევრები</span>
@@ -1103,14 +1098,14 @@
         <section class="py-24 relative bg-background" id="services">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="mb-16">
-                    <div class="flex items-center gap-3 mb-2">
+                    <div class=" flex items-center gap-3 mb-2">
                         <span class="h-1 w-12 bg-black rounded-full"></span>
                         <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
                             data-key="services_intro">შესავალი</span>
                     </div>
-                    <h2 class="scroll-reveal scroll-float text-4xl md:text-5xl font-display font-black text-black mb-6"
+                    <h2 class=" text-4xl md:text-5xl font-display font-black text-black mb-6"
                         data-key="services_overview">მიმოხილვა.</h2>
-                    <p class="proximity-text max-w-2xl text-gray-600 text-lg font-medium" data-key="services_desc">
+                    <p class=" max-w-2xl text-gray-600 text-lg font-medium" data-key="services_desc">
                         ძალისხმევის გარეშე ვაერთიანებ სხვადასხვა ელემენტებს მიმზიდველი კომპოზიციების შესაქმნელად.
                         სპეციალიზირებული ვარ სტატიკური დიზაინების ფუნქციურ, ინტერაქტიულ რეალობად ქცევაში.
                     </p>
@@ -1119,7 +1114,7 @@
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Card Template -->
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-black">web</span>
@@ -1135,7 +1130,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-black">dns</span>
@@ -1152,7 +1147,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-white">security</span>
@@ -1168,7 +1163,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-black">travel_explore</span>
@@ -1184,7 +1179,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-black">email</span>
@@ -1200,7 +1195,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-white">support_agent</span>
@@ -1216,7 +1211,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-black">palette</span>
@@ -1232,7 +1227,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-black">layers</span>
@@ -1253,7 +1248,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-white">smart_toy</span>
@@ -1270,7 +1265,7 @@
                     </div>
 
                     <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-black">auto_mode</span>
@@ -1339,7 +1334,7 @@
 
                     <!-- Image Container -->
                     <div
-                        class="relative w-full max-w-sm md:w-[450px] aspect-[3/4] md:aspect-auto md:h-[550px] mx-auto md:mx-0 overflow-hidden rounded-2xl md:order-2 z-10 shadow-hard border-2 border-black">
+                        class=" relative w-full max-w-sm md:w-[450px] aspect-[3/4] md:aspect-auto md:h-[550px] mx-auto md:mx-0 overflow-hidden rounded-2xl md:order-2 z-10 shadow-hard border-2 border-black">
 
                         <!-- The Image -->
                         <img id="actor-image" src="Technical%20Proficiency%20page/actor-image.webp" alt="Mate Akhalaia"
@@ -1351,11 +1346,11 @@
                                md:items-start md:text-left md:order-1 md:max-w-xl z-30">
 
                         <!-- Headline -->
-                        <h2 class="proximity-text text-4xl md:text-6xl font-display font-black text-black uppercase leading-none tracking-tighter mb-4"
+                        <h2 class=" text-4xl md:text-6xl font-display font-black text-black uppercase leading-none tracking-tighter mb-4"
                             data-key="profile_name">მათე ახალაია</h2>
 
                         <!-- Sub-headline -->
-                        <div class="flex items-center gap-3 mb-8 justify-center md:justify-start">
+                        <div class=" flex items-center gap-3 mb-8 justify-center md:justify-start">
                             <span class="h-1 w-12 bg-primary border-2 border-black"></span>
                             <span
                                 class="text-primary font-mono text-sm md:text-base font-bold tracking-widest uppercase"
@@ -1363,7 +1358,7 @@
                         </div>
 
                         <!-- Body Text -->
-                        <p class="proximity-text text-lg md:text-xl text-gray-600 font-georgian leading-relaxed"
+                        <p class=" text-lg md:text-xl text-gray-600 font-georgian leading-relaxed"
                             data-key="profile_desc">
                             მე ვქმნი ციფრულ პროდუქტებს იდეიდან რეალურ გაშვებამდე. ჩემი მიზანია, დაგიზოგოთ დრო და
                             ენერგია: მე მოვახერხებ თქვენი საიტის ნოლიდან აწყობას, მის ტექნიკურ გამართვას და საჯაროდ
@@ -1392,9 +1387,9 @@
                             <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
                                 data-key="projects_intro">ნამუშევრები</span>
                         </div>
-                        <h2 class="scroll-reveal scroll-float text-4xl md:text-5xl font-display font-black text-black mb-6"
+                        <h2 class=" text-4xl md:text-5xl font-display font-black text-black mb-6"
                             data-key="projects_title">რჩეული პროექტები.</h2>
-                        <p class="text-gray-600 text-lg font-medium" data-key="projects_desc">
+                        <p class=" text-gray-600 text-lg font-medium" data-key="projects_desc">
                             თითოეული პროექტი არის უნიკალური გადაწყვეტა, მორგებული კონკრეტულ საჭიროებებზე.
                         </p>
                     </div>
@@ -1403,7 +1398,7 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project 1 -->
                     <div
-                        class="group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
+                        class=" group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
                         <div class="h-56 bg-gray-100 relative overflow-hidden border-b-2 border-black">
                             <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style="background-image: url('wweb-collection%20image/woot-artist.png');"></div>
@@ -1438,7 +1433,7 @@
 
                     <!-- Project 2 -->
                     <div
-                        class="group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
+                        class=" group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
                         <div class="h-56 bg-gray-100 relative overflow-hidden border-b-2 border-black">
                             <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style="background-image: url('wweb-collection%20image/electro-pro.png');"></div>
@@ -1474,7 +1469,7 @@
                 </div>
 
                 <!-- Current Works Section -->
-                <div style="margin-top: 40px; margin-bottom: 70px;">
+                <div class="" style="margin-top: 40px; margin-bottom: 70px;">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="h-1 w-12 bg-black rounded-full"></span>
                         <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
@@ -1488,7 +1483,7 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- NewCarGe Project -->
                     <div
-                        class="group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
+                        class=" group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
                         <div class="h-56 bg-gray-100 relative overflow-hidden border-b-2 border-black">
                             <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style="background-image: url('wweb-collection%20image/NewCarGe.jpeg');"></div>
@@ -1530,7 +1525,7 @@
                 <!-- Contact Info -->
                 <div
                     class="space-y-12 bg-white/50 backdrop-blur-md border-2 border-black p-5 md:p-10 rounded-3xl shadow-hard">
-                    <div>
+                    <div class="">
                         <h2 class="text-4xl md:text-6xl font-display font-black text-black mb-6"
                             data-key="contact_title">კონტაქტი</h2>
                         <p class="text-gray-600 text-lg leading-relaxed font-medium" data-key="contact_desc">
@@ -1539,7 +1534,7 @@
                     </div>
 
                     <div class="space-y-8">
-                        <div class="flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
+                        <div class=" flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
                             <div
                                 class="w-14 h-14 bg-white border-2 border-black rounded-xl flex items-center justify-center text-black shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
                                 <span class="material-icons-round text-2xl">email</span>
@@ -1562,7 +1557,7 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
+                        <div class=" flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
                             <div
                                 class="w-14 h-14 bg-white border-2 border-black rounded-xl flex items-center justify-center text-black shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
                                 <span class="material-icons-round text-2xl">phone</span>
@@ -1699,7 +1694,7 @@
                 </div>
 
                 <!-- Contact Form -->
-                <div class="relative w-full max-w-md md:max-w-none mx-auto">
+                <div class=" relative w-full max-w-md md:max-w-none mx-auto">
                     <div
                         class="bg-white/50 backdrop-blur-md border-2 border-black p-6 md:p-10 rounded-3xl shadow-hard relative z-10 space-y-6 flex items-center justify-center">
                         <div class="text-center w-full">
@@ -1982,261 +1977,37 @@
             }
         });
 
-        // --- High-Performance Scroll-Scrubbing Animation Engine ---
-        class ScrollScrubAnimation {
-            constructor() {
-                this.items = [];
-                this.ticking = false;
-                this.lastScroll = window.scrollY;
-                this.init();
-
-                window.addEventListener('scroll', () => this.requestTick(), { passive: true });
-                window.addEventListener('resize', () => this.init());
-                window.addEventListener('languageChanged', () => {
-                    setTimeout(() => this.init(), 600);
-                });
-            }
-
-            init() {
-                this.items = [];
-                const vh = window.innerHeight;
-                const scrollY = window.scrollY;
-
-                const headings = document.querySelectorAll('h1, h2');
-                const blocks = document.querySelectorAll('.group, .rounded-3xl, p, h3');
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        const item = this.items.find(i => i.el === entry.target);
-                        if (item) item.visible = entry.isIntersecting;
-                    });
-                }, { threshold: 0 });
-
-                // Mode A: Headings (Split into characters)
-                headings.forEach(h => {
-                    if (h.closest('#chat-window')) return;
-
-                    // Only split if not already split (avoids redundant work)
-                    if (!h.querySelector('.scrub-char')) {
-                        const text = h.innerText;
-                        h.innerHTML = '';
-                        h.classList.add('scrub-item');
-                        text.split('').forEach(char => {
-                            const span = document.createElement('span');
-                            span.textContent = char;
-                            span.classList.add('scrub-char');
-                            h.appendChild(span);
-                        });
-                    }
-
-                    const spans = h.querySelectorAll('.scrub-char');
-                    // Cache rect relative to document
-                    const rect = h.getBoundingClientRect();
-                    const item = {
-                        el: h,
-                        type: 'text',
-                        spans,
-                        visible: false,
-                        initialTop: rect.top + scrollY,
-                        height: rect.height
-                    };
-                    this.items.push(item);
-                    observer.observe(h);
-                });
-
-                // Mode B: Blocks (Whole Container Parallax)
-                blocks.forEach(b => {
-                    if (b.closest('h1, h2') || b.closest('#chat-window')) return;
-
-                    b.classList.add('scrub-item');
-                    const rect = b.getBoundingClientRect();
-                    const item = {
-                        el: b,
-                        type: 'block',
-                        visible: false,
-                        initialTop: rect.top + scrollY,
-                        height: rect.height
-                    };
-                    this.items.push(item);
-                    observer.observe(b);
-                });
-
-                this.update();
-            }
-
-            requestTick() {
-                if (!this.ticking) {
-                    requestAnimationFrame(() => this.update());
-                    this.ticking = true;
-                }
-            }
-
-            update() {
-                const vh = window.innerHeight;
-                const scrollY = window.scrollY;
-
-                this.items.forEach(item => {
-                    if (!item.visible) return;
-
-                    // Use cached geometry to avoid layout thrashing
-                    const relativeTop = item.initialTop - scrollY;
-
-                    // Normalize progress: 0 when entering bottom, 1 when reaching top 20%
-                    let progress = (vh - relativeTop) / (vh * 0.8);
-                    progress = Math.max(0, Math.min(1, progress));
-
-                    if (item.type === 'text') {
-                        item.spans.forEach((span, i) => {
-                            const staggerOffset = i * 0.015;
-                            let charProgress = (progress - staggerOffset) / 0.35;
-                            charProgress = Math.max(0, Math.min(1, charProgress));
-
-                            const ease = 1 - Math.pow(1 - charProgress, 3);
-                            const y = (1 - ease) * 30;
-                            const opacity = 0.1 + (ease * 0.9);
-
-                            span.style.transform = `translate3d(0, ${y}px, 0)`;
-                            span.style.opacity = opacity;
-                        });
-                    } else {
-                        // Parallax lift
-                        const centerProgress = (vh / 2 - (relativeTop + item.height / 2)) / vh;
-                        const lift = centerProgress * 40;
-                        item.el.style.transform = `translate3d(0, ${lift}px, 0)`;
-                    }
-                });
-
-                this.ticking = false;
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            window.scrubEngine = new ScrollScrubAnimation();
-            window.proximityEngine = new VariableProximity();
-        });
-
-        // --- Senior UI Engine: Variable Proximity (Liquid Typography Edition) ---
-        class VariableProximity {
-            constructor(options = {}) {
-                this.radius = options.radius || 180; // Larger radius for smoother lead-in
-                this.minWeight = options.minWeight || 400;
-                this.maxWeight = options.maxWeight || 800;
-                this.items = [];
-                this.init();
-
-                window.addEventListener('languageChanged', () => { setTimeout(() => this.init(), 600); });
-                window.addEventListener('resize', () => { this.init(); });
-                window.addEventListener('scroll', () => {
-                    this.items.forEach(item => { item.rect = item.el.getBoundingClientRect(); });
-                }, { passive: true });
-            }
-
-            init() {
-                this.items = [];
-                const paragraphs = document.querySelectorAll('.proximity-text');
-
-                paragraphs.forEach(p => {
-                    const text = p.innerText;
-                    p.innerHTML = '';
-
-                    // Split by words to prevent broken line breaks
-                    const words = text.split(/(\s+)/);
-                    const spans = [];
-
-                    words.forEach(word => {
-                        if (word.trim().length === 0) {
-                            const space = document.createElement('span');
-                            space.textContent = word;
-                            space.classList.add('proximity-char');
-                            p.appendChild(space);
-                            spans.push({ el: space, x: 0, y: 0 });
-                            return;
-                        }
-
-                        const wordWrapper = document.createElement('span');
-                        wordWrapper.style.display = 'inline-block';
-                        wordWrapper.style.whiteSpace = 'nowrap';
-
-                        word.split('').forEach(char => {
-                            const charSpan = document.createElement('span');
-                            charSpan.textContent = char;
-                            charSpan.classList.add('proximity-char');
-                            wordWrapper.appendChild(charSpan);
-                            spans.push({ el: charSpan, x: 0, y: 0 });
-                        });
-                        p.appendChild(wordWrapper);
-                    });
-
-                    const pRect = p.getBoundingClientRect();
-                    spans.forEach(spanObj => {
-                        const sRect = spanObj.el.getBoundingClientRect();
-                        spanObj.x = (sRect.left + sRect.width / 2) - pRect.left;
-                        spanObj.y = (sRect.top + sRect.height / 2) - pRect.top;
-                    });
-
-                    const item = {
-                        el: p,
-                        spans: spans,
-                        active: false,
-                        requestId: null,
-                        mouseX: 0,
-                        mouseY: 0,
-                        rect: pRect
-                    };
-
-                    const handleMove = (e) => {
-                        item.mouseX = e.clientX;
-                        item.mouseY = e.clientY;
-                        if (!item.active) {
-                            item.active = true;
-                            this.loop(item);
-                        }
-                    };
-
-                    p.addEventListener('mousemove', handleMove, { passive: true });
-                    p.addEventListener('mouseleave', () => {
-                        item.active = false;
-                        if (item.requestId) cancelAnimationFrame(item.requestId);
-                        this.reset(item);
-                    });
-
-                    this.items.push(item);
-                });
-            }
-
-            reset(item) {
-                item.spans.forEach(spanObj => {
-                    spanObj.el.style.fontVariationSettings = `'wght' ${this.minWeight}`;
-                });
-            }
-
-            loop(item) {
-                if (!item.active) return;
-
-                const relMouseX = item.mouseX - item.rect.left;
-                const relMouseY = item.mouseY - item.rect.top;
-
-                item.spans.forEach(spanObj => {
-                    const dx = relMouseX - spanObj.x;
-                    const dy = relMouseY - spanObj.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    let weight = this.minWeight;
-                    if (distance < this.radius) {
-                        // Gaussian-like falloff for "Liquid" magnetic feel
-                        // Sigma controls the width of the bell curve
-                        const sigma = this.radius / 2.5;
-                        const factor = Math.exp(-(distance * distance) / (2 * sigma * sigma));
-                        weight = this.minWeight + (this.maxWeight - this.minWeight) * factor;
-                    }
-
-                    spanObj.el.style.fontVariationSettings = `'wght' ${Math.round(weight)}`;
-                });
-
-                item.requestId = requestAnimationFrame(() => this.loop(item));
-            }
-        }
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Theme Toggle Removed -->
 
