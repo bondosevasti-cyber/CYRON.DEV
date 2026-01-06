@@ -48,7 +48,7 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://cdn.tailwindcss.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;700;900&family=Quicksand:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&family=Poppins:wght@400;500;700;900&family=Quicksand:wght@300;400;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
     <link rel="icon" type="image/png" href="images/favor_logo.png?v=2" />
@@ -314,24 +314,24 @@
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&";
 
         function scrambleText(element, newText) {
-            const originalText = element.innerText;
-            const length = Math.max(originalText.length, newText.length);
             let iteration = 0;
+            cancelAnimationFrame(element.raf);
 
-            clearInterval(element.interval);
-
-            element.interval = setInterval(() => {
+            const animate = () => {
                 element.innerText = newText
                     .split("")
                     .map((letter, index) => {
-                        if (index < iteration) { return newText[index]; } return chars[Math.floor(Math.random() * chars.length)];
+                        if (index < iteration) return newText[index];
+                        return chars[Math.floor(Math.random() * chars.length)];
                     })
-                    .join(""); if (iteration >= newText.length) {
-                        clearInterval(element.interval);
-                    }
+                    .join("");
 
-                iteration += 5; // Faster speed: 1 character per tick (30ms)
-            }, 30);
+                if (iteration < newText.length) {
+                    iteration += 0.8; // Control speed here
+                    element.raf = requestAnimationFrame(animate);
+                }
+            };
+            animate();
         }
 
         function switchLanguage(lang) {
@@ -588,12 +588,28 @@
         }
 
         #hire-me-modal .modal-content {
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
         }
 
         #hire-me-modal.open .modal-content {
             transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Global Smoothness and Optimization */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         .calendar-container iframe {
@@ -601,6 +617,43 @@
             height: 600px;
             border: none;
             border-radius: 8px;
+        }
+
+        /* Scroll-Scrubbing Engine Styles */
+        .scrub-item {
+            will-change: transform;
+            /* Transition removed to prevent jitter with JS engine */
+        }
+
+        .scrub-char {
+            display: inline-block;
+            white-space: pre;
+            will-change: transform, opacity;
+        }
+
+        /* Variable Proximity Text Engine Styles */
+        .proximity-text {
+            font-family: 'Roboto Flex', sans-serif !important;
+        }
+
+        .proximity-char {
+            display: inline-block;
+            white-space: pre;
+            will-change: font-variation-settings;
+            font-variation-settings: 'wght' 400;
+            transition: none !important;
+            /* Force JS to handle all frames */
+        }
+
+        /* Scroll Float Animation Styles */
+        .scroll-float {
+            display: block;
+        }
+
+        .scroll-float span {
+            display: inline-block;
+            white-space: pre;
+            will-change: transform;
         }
 
 
@@ -1006,11 +1059,11 @@
                         <span class="text-xs font-display font-bold uppercase tracking-widest">Ready for Launch</span>
                     </div>
 
-                    <h1 class="font-display font-black text-4xl sm:text-5xl md:text-7xl leading-tight text-black"
+                    <h1 class="scroll-float proximity-text font-display font-black text-4xl sm:text-5xl md:text-7xl leading-tight text-black"
                         data-key="hero_title">
                         Web Development & Live Launch
                     </h1>
-                    <p class="text-lg md:text-xl text-gray-700 max-w-lg font-medium leading-relaxed"
+                    <p class="text-lg md:text-xl text-gray-700 max-w-lg font-medium leading-relaxed proximity-text"
                         data-key="hero_desc">
                         ციფრული არქიტექტორი, რომელიც ქმნის შთამბეჭდავ ვებ გამოცდილებას. კოდისა და კრეატიულობის
                         შერწყმა მომავლის ინტერფეისის შესაქმნელად.
@@ -1055,9 +1108,9 @@
                         <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
                             data-key="services_intro">შესავალი</span>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-display font-black text-black mb-6"
+                    <h2 class="scroll-reveal scroll-float text-4xl md:text-5xl font-display font-black text-black mb-6"
                         data-key="services_overview">მიმოხილვა.</h2>
-                    <p class="max-w-2xl text-gray-600 text-lg font-medium" data-key="services_desc">
+                    <p class="proximity-text max-w-2xl text-gray-600 text-lg font-medium" data-key="services_desc">
                         ძალისხმევის გარეშე ვაერთიანებ სხვადასხვა ელემენტებს მიმზიდველი კომპოზიციების შესაქმნელად.
                         სპეციალიზირებული ვარ სტატიკური დიზაინების ფუნქციურ, ინტერაქტიულ რეალობად ქცევაში.
                     </p>
@@ -1298,7 +1351,7 @@
                                md:items-start md:text-left md:order-1 md:max-w-xl z-30">
 
                         <!-- Headline -->
-                        <h2 class="text-4xl md:text-6xl font-display font-black text-black uppercase leading-none tracking-tighter mb-4"
+                        <h2 class="proximity-text text-4xl md:text-6xl font-display font-black text-black uppercase leading-none tracking-tighter mb-4"
                             data-key="profile_name">მათე ახალაია</h2>
 
                         <!-- Sub-headline -->
@@ -1310,7 +1363,7 @@
                         </div>
 
                         <!-- Body Text -->
-                        <p class="text-lg md:text-xl text-gray-600 font-georgian leading-relaxed"
+                        <p class="proximity-text text-lg md:text-xl text-gray-600 font-georgian leading-relaxed"
                             data-key="profile_desc">
                             მე ვქმნი ციფრულ პროდუქტებს იდეიდან რეალურ გაშვებამდე. ჩემი მიზანია, დაგიზოგოთ დრო და
                             ენერგია: მე მოვახერხებ თქვენი საიტის ნოლიდან აწყობას, მის ტექნიკურ გამართვას და საჯაროდ
@@ -1339,7 +1392,7 @@
                             <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
                                 data-key="projects_intro">ნამუშევრები</span>
                         </div>
-                        <h2 class="text-4xl md:text-5xl font-display font-black text-black mb-6"
+                        <h2 class="scroll-reveal scroll-float text-4xl md:text-5xl font-display font-black text-black mb-6"
                             data-key="projects_title">რჩეული პროექტები.</h2>
                         <p class="text-gray-600 text-lg font-medium" data-key="projects_desc">
                             თითოეული პროექტი არის უნიკალური გადაწყვეტა, მორგებული კონკრეტულ საჭიროებებზე.
@@ -1897,10 +1950,10 @@
         document.getElementById('hire-me-form')?.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
             btn.innerText = "პროცესშია...";
             btn.disabled = true;
 
-            // იპოვე ადგილი, სადაც formData იქმნება და დაამატე comment
             const formData = {
                 date: document.getElementById('hire-date')?.value || "Not Specified",
                 time: document.getElementById('hire-time')?.value || "Not Specified",
@@ -1908,7 +1961,7 @@
                 phone: document.getElementById('hire-phone').value,
                 email: document.getElementById('hire-email').value,
                 comment: document.getElementById('hire-comment').value,
-                type: "BOOKING" // სტრუქტურის იდენტიფიკატორი Make.com-ისთვის
+                type: "BOOKING"
             };
 
             try {
@@ -1924,10 +1977,265 @@
                 alert("შეცდომაა.");
                 console.error(error);
             } finally {
-                btn.innerText = "გაგზავნა";
+                btn.innerText = originalText;
                 btn.disabled = false;
             }
         });
+
+        // --- High-Performance Scroll-Scrubbing Animation Engine ---
+        class ScrollScrubAnimation {
+            constructor() {
+                this.items = [];
+                this.ticking = false;
+                this.lastScroll = window.scrollY;
+                this.init();
+
+                window.addEventListener('scroll', () => this.requestTick(), { passive: true });
+                window.addEventListener('resize', () => this.init());
+                window.addEventListener('languageChanged', () => {
+                    setTimeout(() => this.init(), 600);
+                });
+            }
+
+            init() {
+                this.items = [];
+                const vh = window.innerHeight;
+                const scrollY = window.scrollY;
+
+                const headings = document.querySelectorAll('h1, h2');
+                const blocks = document.querySelectorAll('.group, .rounded-3xl, p, h3');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const item = this.items.find(i => i.el === entry.target);
+                        if (item) item.visible = entry.isIntersecting;
+                    });
+                }, { threshold: 0 });
+
+                // Mode A: Headings (Split into characters)
+                headings.forEach(h => {
+                    if (h.closest('#chat-window')) return;
+
+                    // Only split if not already split (avoids redundant work)
+                    if (!h.querySelector('.scrub-char')) {
+                        const text = h.innerText;
+                        h.innerHTML = '';
+                        h.classList.add('scrub-item');
+                        text.split('').forEach(char => {
+                            const span = document.createElement('span');
+                            span.textContent = char;
+                            span.classList.add('scrub-char');
+                            h.appendChild(span);
+                        });
+                    }
+
+                    const spans = h.querySelectorAll('.scrub-char');
+                    // Cache rect relative to document
+                    const rect = h.getBoundingClientRect();
+                    const item = {
+                        el: h,
+                        type: 'text',
+                        spans,
+                        visible: false,
+                        initialTop: rect.top + scrollY,
+                        height: rect.height
+                    };
+                    this.items.push(item);
+                    observer.observe(h);
+                });
+
+                // Mode B: Blocks (Whole Container Parallax)
+                blocks.forEach(b => {
+                    if (b.closest('h1, h2') || b.closest('#chat-window')) return;
+
+                    b.classList.add('scrub-item');
+                    const rect = b.getBoundingClientRect();
+                    const item = {
+                        el: b,
+                        type: 'block',
+                        visible: false,
+                        initialTop: rect.top + scrollY,
+                        height: rect.height
+                    };
+                    this.items.push(item);
+                    observer.observe(b);
+                });
+
+                this.update();
+            }
+
+            requestTick() {
+                if (!this.ticking) {
+                    requestAnimationFrame(() => this.update());
+                    this.ticking = true;
+                }
+            }
+
+            update() {
+                const vh = window.innerHeight;
+                const scrollY = window.scrollY;
+
+                this.items.forEach(item => {
+                    if (!item.visible) return;
+
+                    // Use cached geometry to avoid layout thrashing
+                    const relativeTop = item.initialTop - scrollY;
+
+                    // Normalize progress: 0 when entering bottom, 1 when reaching top 20%
+                    let progress = (vh - relativeTop) / (vh * 0.8);
+                    progress = Math.max(0, Math.min(1, progress));
+
+                    if (item.type === 'text') {
+                        item.spans.forEach((span, i) => {
+                            const staggerOffset = i * 0.015;
+                            let charProgress = (progress - staggerOffset) / 0.35;
+                            charProgress = Math.max(0, Math.min(1, charProgress));
+
+                            const ease = 1 - Math.pow(1 - charProgress, 3);
+                            const y = (1 - ease) * 30;
+                            const opacity = 0.1 + (ease * 0.9);
+
+                            span.style.transform = `translate3d(0, ${y}px, 0)`;
+                            span.style.opacity = opacity;
+                        });
+                    } else {
+                        // Parallax lift
+                        const centerProgress = (vh / 2 - (relativeTop + item.height / 2)) / vh;
+                        const lift = centerProgress * 40;
+                        item.el.style.transform = `translate3d(0, ${lift}px, 0)`;
+                    }
+                });
+
+                this.ticking = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.scrubEngine = new ScrollScrubAnimation();
+            window.proximityEngine = new VariableProximity();
+        });
+
+        // --- Senior UI Engine: Variable Proximity (Liquid Typography Edition) ---
+        class VariableProximity {
+            constructor(options = {}) {
+                this.radius = options.radius || 180; // Larger radius for smoother lead-in
+                this.minWeight = options.minWeight || 400;
+                this.maxWeight = options.maxWeight || 800;
+                this.items = [];
+                this.init();
+
+                window.addEventListener('languageChanged', () => { setTimeout(() => this.init(), 600); });
+                window.addEventListener('resize', () => { this.init(); });
+                window.addEventListener('scroll', () => {
+                    this.items.forEach(item => { item.rect = item.el.getBoundingClientRect(); });
+                }, { passive: true });
+            }
+
+            init() {
+                this.items = [];
+                const paragraphs = document.querySelectorAll('.proximity-text');
+
+                paragraphs.forEach(p => {
+                    const text = p.innerText;
+                    p.innerHTML = '';
+
+                    // Split by words to prevent broken line breaks
+                    const words = text.split(/(\s+)/);
+                    const spans = [];
+
+                    words.forEach(word => {
+                        if (word.trim().length === 0) {
+                            const space = document.createElement('span');
+                            space.textContent = word;
+                            space.classList.add('proximity-char');
+                            p.appendChild(space);
+                            spans.push({ el: space, x: 0, y: 0 });
+                            return;
+                        }
+
+                        const wordWrapper = document.createElement('span');
+                        wordWrapper.style.display = 'inline-block';
+                        wordWrapper.style.whiteSpace = 'nowrap';
+
+                        word.split('').forEach(char => {
+                            const charSpan = document.createElement('span');
+                            charSpan.textContent = char;
+                            charSpan.classList.add('proximity-char');
+                            wordWrapper.appendChild(charSpan);
+                            spans.push({ el: charSpan, x: 0, y: 0 });
+                        });
+                        p.appendChild(wordWrapper);
+                    });
+
+                    const pRect = p.getBoundingClientRect();
+                    spans.forEach(spanObj => {
+                        const sRect = spanObj.el.getBoundingClientRect();
+                        spanObj.x = (sRect.left + sRect.width / 2) - pRect.left;
+                        spanObj.y = (sRect.top + sRect.height / 2) - pRect.top;
+                    });
+
+                    const item = {
+                        el: p,
+                        spans: spans,
+                        active: false,
+                        requestId: null,
+                        mouseX: 0,
+                        mouseY: 0,
+                        rect: pRect
+                    };
+
+                    const handleMove = (e) => {
+                        item.mouseX = e.clientX;
+                        item.mouseY = e.clientY;
+                        if (!item.active) {
+                            item.active = true;
+                            this.loop(item);
+                        }
+                    };
+
+                    p.addEventListener('mousemove', handleMove, { passive: true });
+                    p.addEventListener('mouseleave', () => {
+                        item.active = false;
+                        if (item.requestId) cancelAnimationFrame(item.requestId);
+                        this.reset(item);
+                    });
+
+                    this.items.push(item);
+                });
+            }
+
+            reset(item) {
+                item.spans.forEach(spanObj => {
+                    spanObj.el.style.fontVariationSettings = `'wght' ${this.minWeight}`;
+                });
+            }
+
+            loop(item) {
+                if (!item.active) return;
+
+                const relMouseX = item.mouseX - item.rect.left;
+                const relMouseY = item.mouseY - item.rect.top;
+
+                item.spans.forEach(spanObj => {
+                    const dx = relMouseX - spanObj.x;
+                    const dy = relMouseY - spanObj.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    let weight = this.minWeight;
+                    if (distance < this.radius) {
+                        // Gaussian-like falloff for "Liquid" magnetic feel
+                        // Sigma controls the width of the bell curve
+                        const sigma = this.radius / 2.5;
+                        const factor = Math.exp(-(distance * distance) / (2 * sigma * sigma));
+                        weight = this.minWeight + (this.maxWeight - this.minWeight) * factor;
+                    }
+
+                    spanObj.el.style.fontVariationSettings = `'wght' ${Math.round(weight)}`;
+                });
+
+                item.requestId = requestAnimationFrame(() => this.loop(item));
+            }
+        }
     </script>
 
     <!-- Theme Toggle Removed -->
