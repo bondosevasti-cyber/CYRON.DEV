@@ -29,7 +29,7 @@
             /* System font fallback */
         }
 
-        section {}
+
 
         /* Hide grid background initially to save render time */
         .fixed.inset-0.z-0 {
@@ -110,6 +110,8 @@
                 nav_projects: "პროექტები",
                 nav_contact: "კონტაქტი",
                 btn_hire_me: "დამიქირავე",
+                btn_view_all_services: "ყველა სერვისის ნახვა",
+                btn_show_less_services: "ნაკლების ნახვა",
                 hero_title: "Web Development & Live Launch",
                 hero_desc: "ვაწყობ საიტს ნოლიდან და გაბარებთ უკვე ჩართულს. ჩემს მომსახურებაში შედის ყველაფერი: კოდი, ჰოსტინგი, დომენი და SSL.მთავარი პირობა: ნულოვანი თავის ტკივილი თქვენთვის.",
                 btn_my_work: "ჩემი ნამუშევრები",
@@ -215,6 +217,8 @@
                 nav_projects: "Projects",
                 nav_contact: "Contact",
                 btn_hire_me: "Hire Me",
+                btn_view_all_services: "View All Services",
+                btn_show_less_services: "Show Less",
                 hero_title: "Web Development & Live Launch",
                 hero_desc: "I build the site from scratch and hand it over fully live. My service includes everything: code, hosting, domain, and SSL. Main condition: Zero headache for you.",
                 btn_my_work: "My Work",
@@ -337,6 +341,36 @@
                 }
             };
             animate();
+        }
+
+        function toggleServices() {
+            const wrapper = document.getElementById('extra-services-wrapper');
+            const btn = document.getElementById('view-all-services-btn');
+
+            // Check if currently open (max-height is set to a large value or scrollHeight)
+            const isHidden = wrapper.style.maxHeight === '' || wrapper.style.maxHeight === '0px';
+
+            if (isHidden) {
+                // Open
+                wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+                wrapper.style.opacity = "1";
+                wrapper.style.transform = "translateY(0)";
+
+                // Update Button
+                const currentLang = localStorage.getItem('lang') || 'ka';
+                btn.querySelector('span').setAttribute('data-key', 'btn_show_less_services');
+                btn.querySelector('span').innerText = translations[currentLang]['btn_show_less_services'];
+            } else {
+                // Close
+                wrapper.style.maxHeight = "0px";
+                wrapper.style.opacity = "0";
+                wrapper.style.transform = "translateY(16px)"; // translate-y-4
+
+                // Update Button
+                const currentLang = localStorage.getItem('lang') || 'ka';
+                btn.querySelector('span').setAttribute('data-key', 'btn_view_all_services');
+                btn.querySelector('span').innerText = translations[currentLang]['btn_view_all_services'];
+            }
         }
 
         function switchLanguage(lang) {
@@ -1162,151 +1196,167 @@
                         </div>
                     </div>
 
-                    <div
-                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
-                        <div
-                            class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-black">travel_explore</span>
-                        </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_seo_title">Google &
-                            SEO</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_seo_desc">
-                            საიტის ინდექსაცია Google-ში და ტექნიკური SEO ოპტიმიზაცია.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-black"></div>
-                        </div>
-                    </div>
+                </div> <!-- Closing first grid -->
 
-                    <div
-                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
-                        <div
-                            class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-black">email</span>
-                        </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_email_title">Business
-                            Email</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_email_desc">
-                            კორპორატიული ელ-ფოსტის შექმნა თქვენი ბრენდის სახელით.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-accent"></div>
-                        </div>
-                    </div>
+                <!-- Hidden Extra Services Container -->
+                <div id="extra-services-wrapper" style="max-height: 0px;"
+                    class="overflow-hidden transition-all duration-700 ease-in-out max-h-0 opacity-0 transform translate-y-4 origin-top">
+                    <div class="grid md:grid-cols-3 gap-8 pt-8">
 
-                    <div
-                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
-                            class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-white">support_agent</span>
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">travel_explore</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_seo_title">Google
+                                &
+                                SEO</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_seo_desc">
+                                საიტის ინდექსაცია Google-ში და ტექნიკური SEO ოპტიმიზაცია.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-black"></div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_support_title">
-                            Support</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_support_desc">
-                            საიტის შემდგომი ტექნიკური მონიტორინგი და მხარდაჭერა.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-primary"></div>
-                        </div>
-                    </div>
 
-                    <div
-                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
-                            class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-black">palette</span>
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">email</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_email_title">
+                                Business
+                                Email</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_email_desc">
+                                კორპორატიული ელ-ფოსტის შექმნა თქვენი ბრენდის სახელით.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-accent"></div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_ui_title">UI/UX
-                            დიზაინი</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_ui_desc">
-                            ინტუიციური და ესთეტიურად სასიამოვნო ინტერფეისების შექმნა, რომლებიც ზრდის ჩართულობას.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-secondary"></div>
-                        </div>
-                    </div>
 
-                    <div
-                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
-                            class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-black">layers</span>
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-white">support_agent</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_support_title">
+                                Support</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_support_desc">
+                                საიტის შემდგომი ტექნიკური მონიტორინგი და მხარდაჭერა.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-primary"></div>
+                            </div>
                         </div>
-                        <!-- Sticker -->
-                        <div class="absolute -top-3 -right-3 bg-primary text-black font-display font-black px-3 py-1 rounded-sm transform rotate-12 shadow-hard text-[10px] uppercase tracking-wider border-2 border-black z-10"
-                            data-key="serv_3d_sticker">
-                            საბაზისო
-                        </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_3d_title">3D
-                            მოდელირება</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_3d_desc">
-                            მარტივი 3D ობიექტების და გარემოს შექმნა ვებისთვის.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-accent"></div>
-                        </div>
-                    </div>
 
-                    <div
-                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
-                            class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-white">smart_toy</span>
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">palette</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_ui_title">UI/UX
+                                დიზაინი</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_ui_desc">
+                                ინტუიციური და ესთეტიურად სასიამოვნო ინტერფეისების შექმნა, რომლებიც ზრდის ჩართულობას.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-secondary"></div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_chatbot_title">
-                            Chatbot Integration</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_chatbot_desc">
-                            Integrating intelligent AI assistants into websites to automate customer support and enhance
-                            user interaction.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-primary"></div>
-                        </div>
-                    </div>
 
-                    <div
-                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
-                            class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-black">auto_mode</span>
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">layers</span>
+                            </div>
+                            <!-- Sticker -->
+                            <div class="absolute -top-3 -right-3 bg-primary text-black font-display font-black px-3 py-1 rounded-sm transform rotate-12 shadow-hard text-[10px] uppercase tracking-wider border-2 border-black z-10"
+                                data-key="serv_3d_sticker">
+                                საბაზისო
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_3d_title">3D
+                                მოდელირება</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_3d_desc">
+                                მარტივი 3D ობიექტების და გარემოს შექმნა ვებისთვის.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-accent"></div>
+                            </div>
                         </div>
-                        <!-- Sticker -->
-                        <div class="absolute -top-3 -right-3 bg-secondary text-black font-display font-black px-3 py-1 rounded-sm transform rotate-12 shadow-hard text-[10px] uppercase tracking-wider border-2 border-black z-10"
-                            data-key="serv_3d_sticker">
-                            საბაზისო
-                        </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_automation_title">
-                            ბიზნეს ავტომატიზაცია</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
-                            data-key="serv_automation_desc">
-                            რუტინული პროცესების სრული ავტომატიზაცია Make.com და n8n-ის გამოყენებით.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-accent"></div>
-                        </div>
-                    </div>
 
-                    <div
-                        class="group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
-                            class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-black">storage</span>
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-white">smart_toy</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_chatbot_title">
+                                Chatbot Integration</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_chatbot_desc">
+                                Integrating intelligent AI assistants into websites to automate customer support and
+                                enhance
+                                user interaction.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-primary"></div>
+                            </div>
                         </div>
-                        <!-- Sticker -->
-                        <div class="absolute -top-3 -right-3 bg-accent text-white font-display font-black px-3 py-1 rounded-sm transform rotate-12 shadow-hard text-[10px] uppercase tracking-wider border-2 border-black z-10"
-                            data-key="serv_3d_sticker">
-                            საბაზისო
-                        </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_backend_title">ბექენდ
-                            დეველოპმენტი</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_backend_desc">
-                            ძლიერი სერვერული ლოგიკა, API-ები და მონაცემთა ბაზების მართვა.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-primary"></div>
-                        </div>
-                    </div>
 
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">auto_mode</span>
+                            </div>
+
+                            <h3 class="text-xl font-display font-black text-black mb-3"
+                                data-key="serv_automation_title">
+                                ბიზნეს ავტომატიზაცია</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_automation_desc">
+                                რუტინული პროცესების სრული ავტომატიზაცია Make.com და n8n-ის გამოყენებით.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-accent"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">storage</span>
+                            </div>
+
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_backend_title">
+                                ბექენდ
+                                დეველოპმენტი</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_backend_desc">
+                                ძლიერი სერვერული ლოგიკა, API-ები და მონაცემთა ბაზების მართვა.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-primary"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="flex justify-center mt-12 w-full">
+                    <button id="view-all-services-btn" onclick="toggleServices()"
+                        class="bg-white hover:bg-black text-black hover:text-white font-display font-bold text-sm px-8 py-3 uppercase tracking-wider rounded-full border-2 border-black shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                        <span data-key="btn_view_all_services">ყველა სერვისის ნახვა</span>
+                    </button>
                 </div>
             </div>
         </section>
