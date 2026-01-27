@@ -150,8 +150,11 @@
                 serv_chatbot_count: "3",
                 serv_automation_title: "ბიზნეს ავტომატიზაცია",
                 serv_automation_desc: "რუტინული პროცესების სრული ავტომატიზაცია Make.com და n8n-ის გამოყენებით. სხვადასხვა პლატფორმების (CRM, Sheets, Email) სინქრონიზაცია დროის დაზოგვისა და ეფექტურობის გაზრდისთვის.",
-                serv_backend_title: "ბექენდ დეველოპმენტი",
-                serv_backend_desc: "ძლიერი სერვერული ლოგიკა, API-ები და მონაცემთა ბაზების მართვა.",
+                serv_backend_title: "ბექენდ და API დეველოპმენტი",
+                serv_backend_stack: "ბექენდ სტეკი: Node.js, Python, Next.js API Routes.",
+                serv_backend_db: "მონაცემთა ბაზები: PostgreSQL (Relational), Prisma ORM, Supabase.",
+                serv_backend_auth: "უსაფრთხოება: JWT, NextAuth, Role-based Access Control (RBAC).",
+                serv_backend_integrations: "ინტეგრაციები: REST & GraphQL APIs, Third-party service integrations.",
                 tech_title: "ტექნიკური",
                 tech_profit: "გამოცდილება",
                 tech_desc: "მუდმივად ვაახლებ ჩემს ცოდნას უახლესი ტექნოლოგიებით. მაღალი გამოცდილება ფრონტენდ არქიტექტურასა და დიზაინ სისტემებში.",
@@ -257,8 +260,11 @@
                 serv_chatbot_count: "3",
                 serv_automation_title: "Business Automation",
                 serv_automation_desc: "Full automation of routine processes using Make.com and n8n. Synchronization of various platforms (CRM, Sheets, Email) to save time and increase efficiency.",
-                serv_backend_title: "Backend Development",
-                serv_backend_desc: "Robust server-side logic, APIs, and database management.",
+                serv_backend_title: "Backend & API Development",
+                serv_backend_stack: "Backend Stack: Node.js, Python, Next.js API Routes.",
+                serv_backend_db: "Databases: PostgreSQL (Relational), Prisma ORM, Supabase.",
+                serv_backend_auth: "Security & Auth: JWT, NextAuth, Role-based Access Control (RBAC).",
+                serv_backend_integrations: "Integrations: REST & GraphQL APIs, Third-party service integrations.",
                 tech_title: "Technical",
                 tech_profit: "Proficiency",
                 tech_desc: "Constantly upgrading my neural network with the latest technologies. High proficiency in frontend architecture and design systems.",
@@ -1047,7 +1053,7 @@
             class="max-w-7xl mx-auto px-6 h-auto py-4 md:py-0 md:h-20 relative flex flex-col md:flex-row items-center justify-center md:justify-between">
             <div class="flex items-center gap-2 mb-3 md:mb-0 cursor-pointer"
                 onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <!-- Friendlier Icon Removed -->
+
                 <span class="font-display font-black text-3xl tracking-tight text-black">CYRON.<span
                         class="text-primary">DEV</span></span>
             </div>
@@ -1062,7 +1068,7 @@
                     href="#contact" data-key="nav_contact">კონტაქტი</a>
             </nav>
             <div class="flex items-center gap-4">
-                <!-- Theme Toggle Removed -->
+
 
                 <button id="lang-toggle" onclick="switchLanguage(this.innerText === 'EN' ? 'en' : 'ka')"
                     class="font-display font-bold text-sm tracking-widest hover:text-primary transition-colors border-2 border-black rounded-full px-3 py-1 bg-white hover:bg-black hover:text-white">
@@ -1167,6 +1173,31 @@
                         class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                            <span class="material-icons-round text-2xl text-black">storage</span>
+                        </div>
+                        <h3 class="text-xl font-display font-black text-black mb-6" data-key="serv_backend_title">
+                            Backend & API Development</h3>
+
+                        <div class="space-y-4 mb-6">
+                            <p class="text-gray-600 text-[13px] leading-tight font-medium"
+                                data-key="serv_backend_stack">Backend Stack: Node.js, Python, Next.js API Routes.</p>
+                            <p class="text-gray-600 text-[13px] leading-tight font-medium" data-key="serv_backend_db">
+                                Databases: PostgreSQL (Relational), Prisma ORM, Supabase.</p>
+                            <p class="text-gray-600 text-[13px] leading-tight font-medium" data-key="serv_backend_auth">
+                                Security & Auth: JWT, NextAuth, Role-based Access Control (RBAC).</p>
+                            <p class="text-gray-600 text-[13px] leading-tight font-medium"
+                                data-key="serv_backend_integrations">Integrations: REST & GraphQL APIs.</p>
+                        </div>
+
+                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                            <div class="h-full w-full bg-primary"></div>
+                        </div>
+                    </div>
+
+                    <div
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        <div
+                            class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
                             <span class="material-icons-round text-2xl text-black">dns</span>
                         </div>
                         <h3 class="text-xl font-display font-black text-black mb-3"
@@ -1180,28 +1211,30 @@
                         </div>
                     </div>
 
-                    <div
-                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
-                        <div
-                            class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                            <span class="material-icons-round text-2xl text-white">security</span>
-                        </div>
-                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_ssl_sec_title">SSL &
-                            Security</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_ssl_sec_desc">
-                            HTTPS პროტოკოლი და საიტის დაცვა Cloudflare-ის მეშვეობით.
-                        </p>
-                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-secondary"></div>
-                        </div>
-                    </div>
-
                 </div> <!-- Closing first grid -->
 
                 <!-- Hidden Extra Services Container -->
                 <div id="extra-services-wrapper" style="max-height: 0px;"
                     class="overflow-hidden transition-all duration-700 ease-in-out max-h-0 opacity-0 transform translate-y-4 origin-top">
                     <div class="grid md:grid-cols-3 gap-8 pt-8">
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-white">security</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_ssl_sec_title">
+                                SSL &
+                                Security</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_ssl_sec_desc">
+                                HTTPS პროტოკოლი და საიტის დაცვა Cloudflare-ის მეშვეობით.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-secondary"></div>
+                            </div>
+                        </div>
 
                         <div
                             class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
@@ -1330,24 +1363,7 @@
                             </div>
                         </div>
 
-                        <div
-                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
-                            <div
-                                class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
-                                <span class="material-icons-round text-2xl text-black">storage</span>
-                            </div>
 
-                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_backend_title">
-                                ბექენდ
-                                დეველოპმენტი</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
-                                data-key="serv_backend_desc">
-                                ძლიერი სერვერული ლოგიკა, API-ები და მონაცემთა ბაზების მართვა.
-                            </p>
-                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
-                                <div class="h-full w-3/4 bg-primary"></div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -1516,6 +1532,8 @@
                             </button>
                         </div>
                     </div>
+
+
                 </div>
 
                 <!-- Current Works Section -->
@@ -1875,6 +1893,8 @@
             </div>
         </div>
     </div>
+    <!-- Video Player Modal -->
+
 
     <script>
         // ფანჯრის მართვა
@@ -2008,7 +2028,6 @@
                 comment: document.getElementById('hire-comment').value,
                 type: "BOOKING"
             };
-
             try {
                 await fetch("/api/contact", {
                     method: 'POST',
@@ -2024,6 +2043,67 @@
             } finally {
                 btn.innerText = originalText;
                 btn.disabled = false;
+            }
+        });
+
+        // Video Modal Functions
+        window.openVideoModal = function (videoId, title) {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-modal-iframe');
+            const titleElem = document.getElementById('video-modal-title');
+            const content = document.getElementById('video-modal-content');
+
+            if (!modal || !iframe) {
+                console.error("Video modal elements not found");
+                return;
+            }
+
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            if (titleElem) titleElem.innerText = title || "VIDEO PREVIEW";
+
+            // Ensure visibility with z-index and opacity
+            modal.style.zIndex = '99999';
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100', 'pointer-events-auto');
+
+            requestAnimationFrame(() => {
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            });
+
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeVideoModal = function () {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-modal-iframe');
+            const content = document.getElementById('video-modal-content');
+
+            if (!modal) return;
+
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                if (iframe) iframe.src = ""; // Stop video
+                document.body.style.overflow = '';
+            }, 300);
+        };
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (!document.getElementById('video-modal').classList.contains('pointer-events-none')) {
+                    closeVideoModal();
+                }
+            }
+        });
+
+        // Close on background click
+        document.getElementById('video-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'video-modal') {
+                closeVideoModal();
             }
         });
 
@@ -2260,6 +2340,7 @@
             });
         })();
     </script>
+
 </body>
 
 
