@@ -14,7 +14,8 @@ const ctx = canvas ? canvas.getContext('2d') : null;
 if (canvas && ctx) {
     let width, height;
     let particles = [];
-    const connectionDistance = 350; // Increased for long LED lines effect
+    // Decreased connection distance to 180px because we now have 3x more points
+    const connectionDistance = 180;
     let mouse = { x: null, y: null };
     let hoveredRect = null;
 
@@ -53,16 +54,20 @@ if (canvas && ctx) {
         canvas.height = height;
 
         particles = [];
-        // Calculate a stable number of particles scaling across the full height of the site, maxing at 140
-        const numParticles = Math.min(140, Math.floor((width * height) / 35000));
+        // Calculate a stable number of particles scaling across the full height of the site, maxing at 600 for a massive feel
+        const numParticles = Math.min(600, Math.floor((width * height) / 8000));
 
         for (let i = 0; i < numParticles; i++) {
+            // Give each particle a 'depth' (z-axis) from 0.2 (far back) to 1.5 (very close)
+            const depth = Math.random() * 1.3 + 0.2;
+
             particles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 1.5,
-                vy: (Math.random() - 0.5) * 1.5,
-                radius: Math.random() * 1.5 + 0.5,
+                vx: (Math.random() - 0.5) * 1.2 * depth, // Closer moves faster
+                vy: (Math.random() - 0.5) * 1.2 * depth,
+                radius: (Math.random() * 1.5 + 0.5) * depth, // Closer is bigger
+                depth: depth, // Store depth for opacity rendering
                 phase: Math.random() * Math.PI * 2, // Personal glowing pulse phase
                 // Card connection properties
                 cornerIndex: i % 4,
@@ -92,19 +97,21 @@ if (canvas && ctx) {
             if (p.y < -100) p.y = height + 100;
             if (p.y > height + 100) p.y = -100;
 
-            // Draw glowing node without heavy shadowBlur (which causes extreme lag)
+            // Draw glowing node
             const pulse = (Math.sin(p.phase) + 1) / 2;
 
-            // Outer glow layer
+            // Outer glow layer - only close particles have strong glow, far particles are dim
+            const glowOpacity = Math.min(0.3, 0.1 * p.depth + pulse * 0.15 * p.depth);
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius * 3, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(250, 204, 21, ${(0.1 + pulse * 0.2)})`;
+            ctx.fillStyle = `rgba(250, 204, 21, ${glowOpacity})`;
             ctx.fill();
 
-            // Inner solid node
+            // Inner solid node - opacity drops out in the distance
+            const coreOpacity = Math.min(0.8, (0.3 + pulse * 0.5) * p.depth);
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(250, 204, 21, ${0.4 + pulse * 0.6})`;
+            ctx.fillStyle = `rgba(250, 204, 21, ${coreOpacity})`;
             ctx.fill();
         });
 
@@ -118,7 +125,8 @@ if (canvas && ctx) {
                 const dy = p1.y - p2.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < connectionDistance) {
+                // In 3D space, only connect nodes if they are at a similar depth (prevents weird cross-depth lines and fixes lag for 600 points)
+                if (distance < connectionDistance && Math.abs(p1.depth - p2.depth) < 0.4) {
                     let mouseDist = 1000;
                     if (mouse.x !== null && mouse.y !== null) {
                         const midX = (p1.x + p2.x) / 2;
@@ -129,8 +137,12 @@ if (canvas && ctx) {
                     const distanceRatio = 1 - (distance / connectionDistance);
                     // Light up intensely near the cursor
                     const interactBoost = mouseDist < 250 ? 0.5 : 0;
-                    const finalOpacity = Math.max(0.02, distanceRatio * 0.4 + interactBoost);
 
+                    // Line opacity matches the depth of both particles
+                    const depthFactor = (p1.depth + p2.depth) / 2;
+                    let finalOpacity = Math.max(0.015, (distanceRatio * 0.4 + interactBoost) * Math.min(1, depthFactor));
+
+                    // Even far lines visible slightly, but close lines get quite bright
                     ctx.beginPath();
                     ctx.moveTo(p1.x, p1.y);
                     ctx.lineTo(p2.x, p2.y);
