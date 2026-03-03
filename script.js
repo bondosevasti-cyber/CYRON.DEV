@@ -25,9 +25,9 @@ if (canvas && ctx) {
         mouse.x = e.pageX;
         mouse.y = e.pageY;
 
-        // Efficiently find if we are hovering over a glass card
+        // Efficiently find if we are hovering over a glass card (Desktop only to save mobile performance)
         const el = document.elementFromPoint(e.clientX, e.clientY);
-        const card = el ? el.closest('.rounded-3xl, .bg-white\\/5') : null;
+        const card = (el && window.innerWidth >= 768) ? el.closest('.rounded-3xl, .bg-white\\/5') : null;
 
         if (card) {
             const rect = card.getBoundingClientRect();
