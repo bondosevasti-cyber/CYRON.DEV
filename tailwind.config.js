@@ -5,27 +5,28 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#FFD700", // Sunny Yellow (Button/Accent)
-        secondary: "#FF7F50", // Coral Pink
-        accent: "#4169E1", // Royal Blue
-        background: "#FFFFFF", // White
-        surface: "#FFFFFF",
-        "text-main": "#1A1A1A",
-        "brand-green": "#4ADE80",
-        red: "#EF4444",
+        primary: "#FBBF24", // Yellow 400
+        secondary: "#3B82F6", // Blue 500
+        accent: "#FBBF24",
+        background: "#0B0F19", // Dark Theme Body
+        surface: "rgba(255, 255, 255, 0.05)", // Glass background
+        "text-main": "#FFFFFF",
       },
       fontFamily: {
-        display: ["Poppins", "sans-serif"],
-        body: ["Nunito", "sans-serif"],
+        display: ["'Spline Sans'", "sans-serif"],
+        body: ["'Spline Sans'", "sans-serif"],
         georgian: ["Noto Sans Georgian", "sans-serif"],
       },
       borderRadius: {
-        DEFAULT: "1rem", // rounded-2xl feel by default
+        DEFAULT: "1rem",
         '3xl': '1.5rem',
       },
       boxShadow: {
-        'hard': '4px 4px 0px 0px #000000',
-        'hard-white': '4px 4px 0px 0px #ffffff',
+        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+        'neon-yellow': '0 0 20px rgba(250, 204, 21, 0.2)',
+      },
+      backdropBlur: {
+        'xl': '20px',
       }
     },
   },

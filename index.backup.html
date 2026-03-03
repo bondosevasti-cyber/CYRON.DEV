@@ -52,13 +52,9 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://cdn.tailwindcss.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&family=Poppins:wght@400;500;700;900&family=Quicksand:wght@300;400;600;700&display=swap"
         rel="stylesheet" />
-
-    <!-- GSAP / ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
     <link rel="icon" type="image/png" href="images/favor_logo.png?v=2" />
     <link rel="apple-touch-icon" href="images/favor_logo.png?v=2" />
@@ -84,59 +80,22 @@
     <meta property="twitter:image" content="https://cyron.dev/images/cover.png?v=1">
     <meta name="google-site-verification" content="FoHyElcbJcEi_AB0nJlEmVFqrirOqw4ZFellbSX1aSo" />
     <style>
-        /* Yellow Marker Highlight */
-        .highlight-marker {
-            position: relative;
-            display: inline-block;
-            white-space: nowrap;
-            z-index: 1;
+        /* Hard Shadow */
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px #000000;
         }
 
-        .highlight-marker::after {
-            content: '';
-            position: absolute;
-            left: -2%;
-            bottom: 10%;
-            width: 104%;
-            height: 40%;
-            background-color: rgba(250, 204, 21, 0.6);
-            /* Yellow 400 */
-            z-index: -1;
-            transform: rotate(-2deg);
-            border-radius: 4px;
+        .hard-shadow-hover:hover {
+            box-shadow: none;
+            transform: translate(4px, 4px);
         }
 
-        /* Glass Pill Navigation Hover */
+        /* Pill Navigation Hover */
         .nav-pill:hover {
-            color: #FBBF24 !important;
-            /* Yellow 400 */
-        }
-
-        /* Math Canvas Background */
-        #math-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 1;
-            /* Bright glowing neon lines visible */
-        }
-
-        /* Mouse Glow Overlay */
-        #mouse-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 40;
-            /* Above background, below modal */
-            background: radial-gradient(circle 600px at var(--x, 50%) var(--y, 50%), rgba(250, 204, 21, 0.08), transparent 80%);
-            transition: background 0.1s ease;
+            background-color: #4169E1;
+            /* Royal Blue */
+            color: white;
+            box-shadow: 2px 2px 0px 0px #000;
         }
     </style>
 
@@ -883,49 +842,122 @@
         }
     </style>
     <style>
-        /* Floating Animation Keyframes (Deep Dark) */
-        @keyframes drift {
+        /* --- Geometric Theme Styles --- */
+
+        /* Background Texture */
+        .bg-geo-texture {
+            background-color: #f3f4f6;
+            /* slightly darker grey for contrast */
+            background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='2' cy='2' r='1' fill='%239ca3af' fill-opacity='0.2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C!-- Red Triangle --%3E%3Cpath d='M50 80 L70 120 L30 120 Z' fill='none' stroke='%23EF4444' stroke-width='3' transform='rotate(15 50 100)' opacity='0.6'/%3E%3C!-- Blue Circle --%3E%3Ccircle cx='300' cy='50' r='15' fill='%234169E1' opacity='0.5'/%3E%3C!-- Yellow Squiggle --%3E%3Cpath d='M200 200 Q210 180 220 200 T240 200' fill='none' stroke='%23FFD700' stroke-width='4' stroke-linecap='round' opacity='0.8'/%3E%3C!-- Green Donut --%3E%3Ccircle cx='100' cy='300' r='12' fill='none' stroke='%234ADE80' stroke-width='4' opacity='0.6'/%3E%3C!-- Pink Dash --%3E%3Crect x='350' y='350' width='30' height='6' rx='3' fill='%23FF7F50' transform='rotate(-45 365 353)' opacity='0.6'/%3E%3C!-- Small Dots --%3E%3Ccircle cx='150' cy='150' r='4' fill='%23EF4444' opacity='0.4'/%3E%3Ccircle cx='250' cy='280' r='4' fill='%234169E1' opacity='0.4'/%3E%3Ccircle cx='50' cy='350' r='6' fill='%23FFD700' opacity='0.5'/%3E%3C!-- Confetti --%3E%3Crect x='280' y='120' width='8' height='8' fill='%234ADE80' transform='rotate(30)' opacity='0.5'/%3E%3Crect x='80' y='20' width='10' height='10' fill='%23FF7F50' transform='rotate(60)' opacity='0.5'/%3E%3C/svg%3E");
+            background-size: 400px 400px;
+        }
+
+        /* Floating Animation Keyframes */
+        @keyframes float-slow {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(20px, -20px) rotate(5deg);
+            }
+        }
+
+        @keyframes float-medium {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-15px, 25px) rotate(-10deg);
+            }
+        }
+
+        @keyframes float-fast {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(10px, 15px) rotate(15deg);
+            }
+        }
+
+        @keyframes rotate-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Shape Classes */
+        .geo-shape {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            /* Behind content */
+        }
+
+        .float-s {
+            animation: float-slow 8s ease-in-out infinite;
+        }
+
+        .float-m {
+            animation: float-medium 6s ease-in-out infinite;
+        }
+
+        .float-f {
+            animation: float-fast 5s ease-in-out infinite;
+        }
+
+        .spin-s {
+            animation: rotate-slow 20s linear infinite;
+        }
+
+        /* Specific Shapes */
+        .stripe-circle {
+            background: repeating-linear-gradient(45deg,
+                    #FFD700,
+                    #FFD700 10px,
+                    transparent 10px,
+                    transparent 20px);
+            border: 2px solid #000;
+            opacity: 0.6;
+        }
+
+        .dot-pattern {
+            background-image: radial-gradient(#4ADE80 20%, transparent 20%);
+            background-position: 0 0;
+            background-size: 10px 10px;
+            opacity: 0.5;
+        }
+
+        /* Hero Entrance Animation */
+        @keyframes slide-up-fade {
             0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            33% {
-                transform: translate(30px, -50px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
+                opacity: 0;
+                transform: translateY(40px);
             }
 
             100% {
-                transform: translate(0, 0) scale(1);
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .animate-drift {
-            animation: drift 15s infinite alternate ease-in-out;
-        }
-
-        @keyframes drift-reverse {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            33% {
-                transform: translate(-40px, 30px) scale(1.05);
-            }
-
-            66% {
-                transform: translate(30px, -20px) scale(0.95);
-            }
-
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-        }
-
-        .animate-drift-reverse {
-            animation: drift-reverse 18s infinite alternate ease-in-out;
+        .animate-entrance {
+            opacity: 0;
+            /* Start hidden */
+            animation: slide-up-fade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         /* Project Modal Styles */
@@ -957,233 +989,422 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+            background: #f1f1f1;
             border-radius: 10px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
+            background: #000;
             border-radius: 10px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #FBBF24;
+            background: #444;
         }
     </style>
 </head>
 
 <body
-    class="bg-[#0B0F19] text-gray-300 font-display relative overflow-x-hidden selection:bg-primary selection:text-[#0B0F19]"
-    style="background-color: #0B0F19 !important;">
-    <!-- Light Glow Overlay -->
-    <div id="mouse-glow"></div>
+    class="bg-background text-text-main font-body transition-colors duration-300 relative overflow-x-hidden selection:bg-primary selection:text-black">
+    <!-- Clean Background Replaced -->
+    <!-- Geometric Shapes Container -->
+    <div id="geo-shapes-container" class="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-geo-texture">
+        <!-- Stripe Circle Top Left -->
+        <div class="geo-shape stripe-circle w-32 h-32 rounded-full top-20 left-10 float-s opacity-80"></div>
 
-    <!-- Magical Math Node Network -->
-    <canvas id="math-canvas"></canvas>
+        <!-- Dotted Pattern Right -->
+        <div class="geo-shape dot-pattern w-56 h-56 rounded-full top-1/4 right-10 float-m"></div>
 
-    <!-- Dynamic Live Background Orbs -->
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen opacity-40">
-        <div
-            class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/30 blur-[120px] rounded-full animate-drift">
-        </div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-yellow-500/20 blur-[120px] rounded-full animate-drift-reverse"
-            style="animation-delay: -5s"></div>
-        <div class="absolute top-[40%] left-[20%] w-[400px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full animate-drift"
-            style="animation-delay: -10s"></div>
+        <!-- Red Triangle Bottom Left -->
+        <svg class="geo-shape bottom-32 left-10 w-28 h-28 text-red spin-s" viewBox="0 0 100 100" fill="currentColor"
+            style="opacity: 0.9;">
+            <path d="M50 15 L85 85 L15 85 Z" stroke="black" stroke-width="3" />
+        </svg>
+
+        <!-- Yellow Star Top Right -->
+        <svg class="geo-shape top-24 right-1/4 w-20 h-20 text-primary float-f" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M50 0 L61 35 L98 35 L68 57 L79 91 L50 70 L21 91 L32 57 L2 35 L39 35 Z" stroke="black"
+                stroke-width="3" />
+        </svg>
+
+        <!-- Blue Squiggle Middle Left -->
+        <svg class="geo-shape top-1/2 left-24 w-40 h-40 text-accent float-s" viewBox="0 0 100 100" fill="none"
+            stroke="currentColor" stroke-width="6" stroke-linecap="round">
+            <path d="M10 50 Q 30 20, 50 50 T 90 50" />
+        </svg>
+
+        <!-- Green Leaf Bottom Right -->
+        <svg class="geo-shape bottom-20 right-20 w-24 h-24 text-brand-green float-m" viewBox="0 0 24 24"
+            fill="currentColor" stroke="black" stroke-width="1.5">
+            <path
+                d="M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20C19,20,22,3,22,3,21,5,14,5.25,9,6.25S2,11.5,2,13.5a6.22,6.22,0,0,0,1.75,3.91,65.34,65.34,0,0,1,6.58-9.1Z" />
+        </svg>
+
+        <!-- Extra Small Shapes for Vibrancy -->
+        <div class="geo-shape w-12 h-12 rounded-full bg-secondary border-2 border-black top-1/2 right-1/3 float-f"
+            style="opacity: 0.8;"></div>
+        <div class="geo-shape w-8 h-8 rotate-45 bg-red border-2 border-black bottom-1/4 left-1/3 float-s"></div>
     </div>
 
-    <header
-        class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-glass transition-all duration-300">
-        <div class="h-16 md:h-20 px-6 relative flex items-center justify-between">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <span class="font-display font-black text-2xl tracking-tight text-white">CYRON.<span
+    <header class="fixed top-0 left-0 w-full z-50 border-b-2 border-black bg-orange-500"
+        style="background-color: #F97316 !important;">
+        <div
+            class="max-w-7xl mx-auto px-6 h-auto py-4 md:py-0 md:h-20 relative flex flex-col md:flex-row items-center justify-center md:justify-between">
+            <div class="flex items-center gap-2 mb-3 md:mb-0 cursor-pointer"
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+
+                <span class="font-display font-black text-3xl tracking-tight text-black">CYRON.<span
                         class="text-primary">DEV</span></span>
             </div>
             <nav class="hidden md:flex gap-4">
-                <a class="nav-pill px-4 py-2 font-display text-sm font-bold uppercase tracking-widest text-gray-300 transition-colors"
+                <a class="nav-pill px-6 py-2 rounded-full font-display text-sm font-bold uppercase tracking-widest text-black transition-all border-2 border-transparent hover:border-black"
                     href="#home" data-key="nav_home">მთავარი</a>
-                <a class="nav-pill px-4 py-2 font-display text-sm font-bold uppercase tracking-widest text-gray-300 transition-colors"
+                <a class="nav-pill px-6 py-2 rounded-full font-display text-sm font-bold uppercase tracking-widest text-black transition-all border-2 border-transparent hover:border-black"
                     href="#services" data-key="nav_services">სერვისები</a>
-                <a class="nav-pill px-4 py-2 font-display text-sm font-bold uppercase tracking-widest text-gray-300 transition-colors"
+                <a class="nav-pill px-6 py-2 rounded-full font-display text-sm font-bold uppercase tracking-widest text-black transition-all border-2 border-transparent hover:border-black"
                     href="#projects" data-key="nav_projects">პროექტები</a>
-                <a class="nav-pill px-4 py-2 font-display text-sm font-bold uppercase tracking-widest text-gray-300 transition-colors"
+                <a class="nav-pill px-6 py-2 rounded-full font-display text-sm font-bold uppercase tracking-widest text-black transition-all border-2 border-transparent hover:border-black"
                     href="#contact" data-key="nav_contact">კონტაქტი</a>
             </nav>
             <div class="flex items-center gap-4">
+
+
                 <button id="lang-toggle" onclick="switchLanguage(this.innerText === 'EN' ? 'en' : 'ka')"
-                    class="font-display font-bold text-sm tracking-widest text-white hover:text-primary transition-colors px-3 py-1">
+                    class="font-display font-bold text-sm tracking-widest hover:text-primary transition-colors border-2 border-black rounded-full px-3 py-1 bg-white hover:bg-black hover:text-white">
                     EN
                 </button>
+
                 <button onclick="openHireMeModal()"
-                    class="bg-primary hover:bg-yellow-300 hover:shadow-neon-yellow text-background font-display font-black text-xs md:text-sm px-5 py-2 uppercase tracking-wider rounded-full transition-all"
+                    class="bg-primary hover:bg-yellow-400 text-black font-display font-black text-sm px-6 py-3 uppercase tracking-wider rounded-full border-2 border-black shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all"
                     data-key="btn_hire_me">
                     დამიქირავე
                 </button>
             </div>
         </div>
     </header>
-    <main class="relative z-10 pt-40 md:pt-20 bg-transparent">
-        <section class="min-h-[90vh] flex items-center justify-center relative px-6 mt-10 md:mt-20 bg-transparent"
-            id="home">
-            <div class="max-w-7xl w-full mx-auto grid md:grid-cols-2 gap-12 items-center gs-reveal">
-                <div class="space-y-8 relative">
+    <main class="relative z-10 pt-40 md:pt-20">
+        <section class="min-h-[90vh] flex items-center justify-center relative px-6 bg-white" id="home">
+            <div class="max-w-7xl w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 relative animate-entrance">
                     <!-- Decorator -->
                     <div
-                        class="inline-flex items-center gap-2 px-4 py-2 border border-white/20 rounded-full bg-white/5 backdrop-blur-md text-gray-300 shadow-glass">
-                        <span class="material-icons-round text-sm text-primary">rocket_launch</span>
-                        <span class="text-xs font-display font-medium uppercase tracking-widest">Ready for Launch</span>
+                        class=" inline-flex items-center gap-2 px-4 py-2 border-2 border-black rounded-full bg-secondary text-white shadow-hard shadow-black">
+                        <span class="material-icons-round text-sm">rocket_launch</span>
+                        <span class="text-xs font-display font-bold uppercase tracking-widest">Ready for Launch</span>
                     </div>
 
-                    <h1 class="font-display font-black text-4xl sm:text-5xl md:text-7xl leading-tight text-white">
-                        <span class="text-white" data-key="hero_title_1">Workflow</span>
-                        <br />
-                        <span class="highlight-marker" data-key="hero_title_2">Automation Engineer</span>
+                    <h1 class=" font-display font-black text-4xl sm:text-5xl md:text-7xl leading-tight text-black"
+                        data-key="hero_title">
+                        Web Development & Live Launch
                     </h1>
-                    <p class="text-lg md:text-xl text-gray-400 max-w-lg font-light leading-relaxed"
+                    <p class=" text-lg md:text-xl text-gray-700 max-w-lg font-medium leading-relaxed"
                         data-key="hero_desc">
                         ციფრული არქიტექტორი, რომელიც ქმნის შთამბეჭდავ ვებ გამოცდილებას. კოდისა და კრეატიულობის
                         შერწყმა მომავლის ინტერფეისის შესაქმნელად.
                     </p>
 
-                    <div class="flex flex-wrap gap-4 pt-4">
+                    <div class=" flex flex-wrap gap-4 pt-4">
                         <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
-                            class="bg-white/10 backdrop-blur-md text-white font-display font-bold px-8 py-4 rounded-full border border-white/20 shadow-glass hover:shadow-neon-yellow hover:border-primary/50 transition-all flex items-center gap-2 group">
+                            class="bg-accent text-white font-display font-bold px-8 py-4 rounded-full border-2 border-black shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center gap-2 group">
                             <span data-key="btn_my_work">ჩემი ნამუშევრები</span>
                             <span
-                                class="material-icons-round text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                class="material-icons-round group-hover:translate-x-1 transition-transform">arrow_forward</span>
                         </button>
+
                     </div>
+
                 </div>
 
                 <!-- Hero Image / Illustration Area -->
-                <div class="relative h-[500px] flex items-center justify-center gs-reveal">
-                    <!-- Abstract Shapes (Neon Glass) -->
-                    <div
-                        class="absolute top-10 right-10 w-24 h-24 bg-primary/20 backdrop-blur-xl border border-primary/30 rounded-full shadow-neon-yellow animate-drift">
-                    </div>
-                    <div
-                        class="absolute bottom-20 left-10 w-16 h-16 bg-secondary/20 backdrop-blur-xl border border-secondary/30 rounded-full shadow-glass animate-drift-reverse">
-                    </div>
+                <div class="relative h-[500px] flex items-center justify-center animate-entrance"
+                    style="animation-delay: 0.2s;">
+                    <!-- Abstract Shapes -->
+                    <div class="absolute top-10 right-10 w-32 h-32 bg-primary rounded-full border-2 border-black shadow-hard animate-bounce"
+                        style="animation-duration: 3s;"></div>
+                    <div class="absolute bottom-20 left-10 w-24 h-24 bg-secondary rounded-full border-2 border-black shadow-hard animate-bounce"
+                        style="animation-duration: 4s;"></div>
 
-                    <!-- Main Card (Glassmorphism) -->
+                    <!-- Main Card -->
                     <div
-                        class="relative w-full max-w-[320px] mx-auto h-[400px] bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-glass hover:shadow-neon-yellow transition-all duration-500 overflow-hidden flex flex-col justify-center items-center group cursor-pointer hover:-translate-y-2">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <span
-                            class="material-icons-round text-7xl text-primary mb-6 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]">code</span>
-                        <h3 class="font-display font-bold text-2xl text-white">Clean Code</h3>
-                        <p class="font-body text-gray-400 mt-2 text-sm font-light">Dark Glass Architecture</p>
+                        class="relative w-full max-w-sm mx-auto h-96 bg-white border-2 border-black rounded-3xl shadow-hard transform rotate-3 hover:rotate-0 transition-all duration-500 overflow-hidden flex flex-col justify-center items-center">
+                        <span class="material-icons-round text-8xl text-accent mb-4">code</span>
+                        <h3 class="font-display font-black text-2xl text-black">Clean Code.</h3>
+                        <p class="font-body text-gray-500 mt-2">Pixel Perfect Design</p>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="py-24 relative" id="services">
+        <section class="py-24 relative bg-background" id="services">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="mb-16 gs-reveal">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="h-1 w-12 bg-gray-600 rounded-full"></span>
-                        <span class="text-gray-400 font-display font-bold uppercase tracking-widest text-sm"
+                <div class="mb-16">
+                    <div class=" flex items-center gap-3 mb-2">
+                        <span class="h-1 w-12 bg-black rounded-full"></span>
+                        <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
                             data-key="services_intro">შესავალი</span>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-display font-black text-white mb-6"
+                    <h2 class=" text-4xl md:text-5xl font-display font-black text-black mb-6"
                         data-key="services_overview">მიმოხილვა.</h2>
-                    <p class="max-w-2xl text-gray-400 text-lg font-light leading-relaxed" data-key="services_desc">
+                    <p class=" max-w-2xl text-gray-600 text-lg font-medium" data-key="services_desc">
                         ძალისხმევის გარეშე ვაერთიანებ სხვადასხვა ელემენტებს მიმზიდველი კომპოზიციების შესაქმნელად.
                         სპეციალიზირებული ვარ სტატიკური დიზაინების ფუნქციურ, ინტერაქტიულ რეალობად ქცევაში.
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8 gs-reveal">
-                    <!-- Service 1: Backend Development -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card Template -->
                     <div
-                        class="group relative bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-glass hover:shadow-neon-yellow transition-all duration-300 hover:-translate-y-2">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
-                            class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl">
+                            class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                            <span class="material-icons-round text-2xl text-black">web</span>
                         </div>
-                        <div class="relative z-10">
-                            <div
-                                class="w-14 h-14 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center mb-6 shadow-glass">
-                                <span class="material-icons-round text-2xl text-primary">storage</span>
-                            </div>
-                            <h3 class="text-xl font-display font-bold text-white mb-6" data-key="serv_backend_title">
-                                Backend & API</h3>
-                            <div class="space-y-4 mb-6">
-                                <p class="text-gray-400 text-[13px] leading-relaxed font-light"
-                                    data-key="serv_backend_stack"><strong class="text-gray-300">Architecture:</strong>
-                                    Node.js, Python, Next.js API.</p>
-                                <p class="text-gray-400 text-[13px] leading-relaxed font-light"
-                                    data-key="serv_backend_db"><strong class="text-gray-300">Databases:</strong>
-                                    PostgreSQL, Prisma, Supabase.</p>
-                                <p class="text-gray-400 text-[13px] leading-relaxed font-light"
-                                    data-key="serv_backend_auth"><strong class="text-gray-300">Security:</strong> JWT,
-                                    NextAuth, RBAC.</p>
-                            </div>
+                        <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_web_title">ვებ
+                            დეველოპმენტი</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_web_desc">
+                            სწრაფი, რესპონსიული და ინტერაქტიული ვებ-გვერდების შექმნა
+                        </p>
+                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                            <div class="h-full w-3/4 bg-accent"></div>
                         </div>
                     </div>
 
-                    <!-- Service 2: Support Chatbot -->
                     <div
-                        class="group relative bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-glass hover:shadow-neon-yellow transition-all duration-300 hover:-translate-y-2 flex flex-col h-full">
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                         <div
-                            class="absolute inset-0 bg-gradient-to-tr from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl">
+                            class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                            <span class="material-icons-round text-2xl text-black">storage</span>
                         </div>
-                        <div class="relative z-10 flex flex-col flex-grow">
+                        <h3 class="text-xl font-display font-black text-black mb-6" data-key="serv_backend_title">
+                            Backend & API Development</h3>
+
+                        <div class="space-y-4 mb-6">
+                            <p class="text-gray-600 text-[13px] leading-tight font-medium"
+                                data-key="serv_backend_stack">Backend Stack: Node.js, Python, Next.js API Routes.</p>
+                            <p class="text-gray-600 text-[13px] leading-tight font-medium" data-key="serv_backend_db">
+                                Databases: PostgreSQL (Relational), Prisma ORM, Supabase.</p>
+                            <p class="text-gray-600 text-[13px] leading-tight font-medium" data-key="serv_backend_auth">
+                                Security & Auth: JWT, NextAuth, Role-based Access Control (RBAC).</p>
+                            <p class="text-gray-600 text-[13px] leading-tight font-medium"
+                                data-key="serv_backend_integrations">Integrations: REST & GraphQL APIs.</p>
+                        </div>
+
+                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                            <div class="h-full w-full bg-primary"></div>
+                        </div>
+                    </div>
+
+                    <div
+                        class=" group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                        <div
+                            class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                            <span class="material-icons-round text-2xl text-black">dns</span>
+                        </div>
+                        <h3 class="text-xl font-display font-black text-black mb-3"
+                            data-key="serv_hosting_domain_title">ჰოსტინგი და დომენი</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                            data-key="serv_hosting_domain_desc">
+                            მაღალსიჩქარიანი სერვერები და .GE/.COM დომენების სრული გამართვა.
+                        </p>
+                        <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                            <div class="h-full w-3/4 bg-primary"></div>
+                        </div>
+                    </div>
+
+                </div> <!-- Closing first grid -->
+
+                <!-- Hidden Extra Services Container -->
+                <div id="extra-services-wrapper" style="max-height: 0px;"
+                    class="overflow-hidden transition-all duration-700 ease-in-out max-h-0 opacity-0 transform translate-y-4 origin-top">
+                    <div class="grid md:grid-cols-3 gap-8 pt-8">
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
                             <div
-                                class="w-14 h-14 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center mb-6 shadow-glass">
-                                <span class="material-icons-round text-2xl text-secondary">smart_toy</span>
+                                class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-white">security</span>
                             </div>
-                            <h3 class="text-xl font-display font-bold text-white mb-3" data-key="serv_chatbot_title">
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_ssl_sec_title">
+                                SSL &
+                                Security</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_ssl_sec_desc">
+                                HTTPS პროტოკოლი და საიტის დაცვა Cloudflare-ის მეშვეობით.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-secondary"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">travel_explore</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_seo_title">Google
+                                &
+                                SEO</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_seo_desc">
+                                საიტის ინდექსაცია Google-ში და ტექნიკური SEO ოპტიმიზაცია.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-black"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">email</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_email_title">
+                                Business
+                                Email</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_email_desc">
+                                კორპორატიული ელ-ფოსტის შექმნა თქვენი ბრენდის სახელით.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-accent"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-white">support_agent</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_support_title">
+                                Support</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_support_desc">
+                                საიტის შემდგომი ტექნიკური მონიტორინგი და მხარდაჭერა.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-primary"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">palette</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_ui_title">UI/UX
+                                დიზაინი</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_ui_desc">
+                                ინტუიციური და ესთეტიურად სასიამოვნო ინტერფეისების შექმნა, რომლებიც ზრდის ჩართულობას.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-secondary"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-secondary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">layers</span>
+                            </div>
+                            <!-- Sticker -->
+                            <div class="absolute -top-3 -right-3 bg-primary text-black font-display font-black px-3 py-1 rounded-sm transform rotate-12 shadow-hard text-[10px] uppercase tracking-wider border-2 border-black z-10"
+                                data-key="serv_3d_sticker">
+                                საბაზისო
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_3d_title">3D
+                                მოდელირება</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium" data-key="serv_3d_desc">
+                                მარტივი 3D ობიექტების და გარემოს შექმნა ვებისთვის.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-accent"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-accent border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-white">smart_toy</span>
+                            </div>
+                            <h3 class="text-xl font-display font-black text-black mb-3" data-key="serv_chatbot_title">
                                 Chatbot Integration</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light"
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
                                 data-key="serv_chatbot_desc">
                                 Integrating intelligent AI assistants into websites to automate customer support and
-                                enhance user interaction.
+                                enhance
+                                user interaction.
                             </p>
-                        </div>
-                    </div>
-
-                    <!-- Service 3: Business Automation -->
-                    <div
-                        class="group relative bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-glass hover:shadow-[0_0_20px_rgba(234,88,12,0.3)] transition-all duration-300 hover:-translate-y-2 hover:border-orange-500/50 flex flex-col h-full">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-tr from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl">
-                        </div>
-                        <div class="relative z-10 flex flex-col flex-grow">
-                            <div
-                                class="w-14 h-14 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center mb-6 shadow-glass group-hover:bg-orange-500/10 transition-colors">
-                                <span
-                                    class="text-orange-500 group-hover:text-orange-400 transition-colors font-black text-xl font-display tracking-tight">n8n</span>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-primary"></div>
                             </div>
-                            <h3 class="text-xl font-display font-bold text-white mb-3" data-key="serv_automation_title">
-                                ბიზნეს ავტომატიზაცია</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light"
-                                data-key="serv_automation_desc">
-                                რუტინული პროცესების სრული ავტომატიზაცია n8n-ის ნოდური არქიტექტურით მონაცემთა ნაკადების
-                                სამართავად.
-                            </p>
                         </div>
+
+                        <div
+                            class="extra-service-card group relative bg-white border-2 border-black p-8 rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300">
+                            <div
+                                class="w-14 h-14 bg-primary border-2 border-black rounded-xl flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#000000]">
+                                <span class="material-icons-round text-2xl text-black">auto_mode</span>
+                            </div>
+
+                            <h3 class="text-xl font-display font-black text-black mb-3"
+                                data-key="serv_automation_title">
+                                ბიზნეს ავტომატიზაცია</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium"
+                                data-key="serv_automation_desc">
+                                რუტინული პროცესების სრული ავტომატიზაცია Make.com და n8n-ის გამოყენებით.
+                            </p>
+                            <div class="w-full h-3 bg-gray-100 border-2 border-black rounded-full overflow-hidden">
+                                <div class="h-full w-3/4 bg-accent"></div>
+                            </div>
+                        </div>
+
+
+
                     </div>
+                </div>
+
+                <div class="flex justify-center mt-12 w-full">
+                    <button id="view-all-services-btn" onclick="toggleServices()"
+                        class="bg-white hover:bg-black text-black hover:text-white font-display font-bold text-sm px-8 py-3 uppercase tracking-wider rounded-full border-2 border-black shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+                        <span data-key="btn_view_all_services">ყველა სერვისის ნახვა</span>
+                    </button>
                 </div>
             </div>
         </section>
-        <section class="py-16 border-y border-white/10 relative bg-transparent overflow-hidden">
+        <section class="py-16 border-y border-gray-200 dark:border-gray-800 relative bg-white overflow-hidden">
+            <!-- Professional Tech Grid Background -->
             <div
-                class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 py-24 min-h-[700px] gs-reveal">
+                class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
+            </div>
+
+            <!-- Central Glow Effect (Theme Aware: Soft in Light, Neon in Dark) -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 dark:bg-primary/20 blur-[120px] rounded-full">
+            </div>
+
+            <div
+                class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 py-24 min-h-[700px]">
+
+                <!-- Tech/Profile Background Element -->
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(252,238,10,0.03),transparent_70%)] pointer-events-none">
+                </div>
 
                 <!-- Desktop Layout: Side-by-Side / Mobile: Vertical Stack -->
                 <div class="relative w-full md:w-auto flex flex-col md:flex-row items-center gap-12">
 
                     <!-- Image Container -->
                     <div
-                        class="relative w-full max-w-sm md:w-[450px] aspect-[3/4] md:aspect-auto md:h-[550px] mx-auto md:mx-0 overflow-hidden rounded-2xl md:order-2 z-10 shadow-glass border border-white/20">
+                        class=" relative w-full max-w-sm md:w-[450px] aspect-[3/4] md:aspect-auto md:h-[550px] mx-auto md:mx-0 overflow-hidden rounded-2xl md:order-2 z-10 shadow-hard border-2 border-black">
+
                         <!-- The Image -->
                         <img id="actor-image" src="Technical%20Proficiency%20page/actor-image.webp" alt="Mate Akhalaia"
                             loading="lazy" class="w-full h-full object-cover">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent opacity-80 pointer-events-none">
-                        </div>
                     </div>
 
                     <!-- Text Content -->
@@ -1191,79 +1412,84 @@
                                md:items-start md:text-left md:order-1 md:max-w-xl z-30">
 
                         <!-- Headline -->
-                        <h2 class="text-4xl md:text-6xl font-display font-black text-white uppercase leading-none tracking-tighter mb-4"
+                        <h2 class=" text-4xl md:text-6xl font-display font-black text-black uppercase leading-none tracking-tighter mb-4"
                             data-key="profile_name">მათე ახალაია</h2>
 
                         <!-- Sub-headline -->
-                        <div class="flex items-center gap-3 mb-8 justify-center md:justify-start">
-                            <span class="h-1 w-12 bg-primary rounded-full"></span>
+                        <div class=" flex items-center gap-3 mb-8 justify-center md:justify-start">
+                            <span class="h-1 w-12 bg-primary border-2 border-black"></span>
                             <span
-                                class="text-primary font-mono text-sm md:text-base font-bold tracking-widest uppercase shadow-neon-yellow"
+                                class="text-primary font-mono text-sm md:text-base font-bold tracking-widest uppercase"
                                 data-key="profile_role">Web Developer</span>
                         </div>
 
                         <!-- Body Text -->
-                        <p class="text-lg md:text-xl text-gray-400 font-georgian font-light leading-relaxed"
+                        <p class=" text-lg md:text-xl text-gray-600 font-georgian leading-relaxed"
                             data-key="profile_desc">
                             მე ვქმნი ციფრულ პროდუქტებს იდეიდან რეალურ გაშვებამდე. ჩემი მიზანია, დაგიზოგოთ დრო და
                             ენერგია: მე მოვახერხებ თქვენი საიტის ნოლიდან აწყობას, მის ტექნიკურ გამართვას და საჯაროდ
-                            გაშვებას (Live Deployment) ყველა საჭირო პარამეტრით
+                            გაშვებას (Live Deployment) ყველა საჭირო პარამეტრით (Hosting, Domain, SSL).
                         </p>
+
+                        <!-- Abstract Tech Decorative Lines (Desktop Only) -->
+                        <div
+                            class="hidden md:block absolute -left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent">
+                        </div>
                     </div>
 
                 </div>
             </div>
+
+            <!-- Clean end of section -->
         </section>
 
 
-        <section id="projects" class="py-24 relative bg-transparent">
+        <section id="projects" class="py-24 bg-white relative">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 gs-reveal">
+                <div class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
                     <div class="max-w-2xl">
                         <div class="flex items-center gap-3 mb-2">
-                            <span class="h-1 w-12 bg-gray-600 rounded-full"></span>
-                            <span class="text-gray-400 font-display font-bold uppercase tracking-widest text-sm"
+                            <span class="h-1 w-12 bg-black rounded-full"></span>
+                            <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
                                 data-key="projects_intro">ნამუშევრები</span>
                         </div>
-                        <h2 class="text-4xl md:text-5xl font-display font-black text-white mb-6"
+                        <h2 class=" text-4xl md:text-5xl font-display font-black text-black mb-6"
                             data-key="projects_title">რჩეული პროექტები.</h2>
-                        <p class="text-gray-400 text-lg font-light leading-relaxed" data-key="projects_desc">
+                        <p class=" text-gray-600 text-lg font-medium" data-key="projects_desc">
                             თითოეული პროექტი არის უნიკალური გადაწყვეტა, მორგებული კონკრეტულ საჭიროებებზე.
                         </p>
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 gs-reveal">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project 1 -->
                     <div
-                        class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-glass hover:shadow-neon-yellow transition-all duration-300 overflow-hidden hover:-translate-y-2">
-                        <div class="h-56 bg-[#0B0F19] relative overflow-hidden border-b border-white/10">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                        class=" group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
+                        <div class="h-56 bg-gray-100 relative overflow-hidden border-b-2 border-black">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style="background-image: url('wweb-collection%20image/woot-artist.png');"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F19] to-transparent opacity-50">
-                            </div>
                             <div class="absolute top-4 left-4 flex gap-2">
                                 <span
-                                    class="bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-display font-medium px-3 py-1 rounded-full uppercase tracking-wider"
+                                    class="bg-white border-2 border-black text-black text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider"
                                     data-key="p_ecommerce">E-COMMERCE</span>
                             </div>
                             <div
-                                class="absolute top-4 right-4 bg-primary text-black font-display font-black px-3 py-1 rounded-sm border border-primary/50 transform rotate-3 shadow-neon-yellow text-[10px] uppercase tracking-wider">
+                                class="absolute top-4 right-4 bg-primary text-black font-display font-black px-3 py-1 rounded-sm border-2 border-black transform rotate-3 shadow-sm text-xs uppercase tracking-wider">
                                 FRONTEND ONLY
                             </div>
                         </div>
                         <div class="p-8">
                             <div class="flex items-center gap-2 mb-4">
-                                <span class="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></span>
-                                <span class="text-xs font-display font-medium text-gray-400 uppercase tracking-widest"
+                                <span class="w-3 h-3 bg-green-500 rounded-full border border-black"></span>
+                                <span class="text-xs font-display font-bold text-gray-500 uppercase tracking-widest"
                                     data-key="p_deployed">გაშვებულია</span>
                             </div>
-                            <h3 class="text-2xl font-display font-bold text-white mb-3">Wood Artist</h3>
-                            <p class="text-gray-400 text-sm mb-6 leading-relaxed font-light" data-key="p1_desc">
+                            <h3 class="text-2xl font-display font-black text-black mb-3">Wood Artist</h3>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed font-medium" data-key="p1_desc">
                                 "ავეჯის ბრენდის სავიზიტო ვებსაიტი. დახვეწილი დიზაინი და კომფორტული ნავიგაცია."
                             </p>
                             <button
-                                class="project-view-btn inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-primary hover:text-white transition-colors border-b-2 border-transparent hover:border-white pb-1"
+                                class="project-view-btn inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-black hover:text-primary transition-colors border-2 border-transparent hover:border-b-black pb-1"
                                 data-image="wweb-collection%20image/WOOD_ARTIST.png" data-title="Wood Artist">
                                 <span data-key="p_view_case">ქეისის ნახვა</span>
                                 <span class="material-icons-round text-lg">arrow_outward</span>
@@ -1273,76 +1499,77 @@
 
                     <!-- Project 2 -->
                     <div
-                        class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-glass hover:shadow-neon-yellow transition-all duration-300 overflow-hidden hover:-translate-y-2">
-                        <div class="h-56 bg-[#0B0F19] relative overflow-hidden border-b border-white/10">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                        class=" group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
+                        <div class="h-56 bg-gray-100 relative overflow-hidden border-b-2 border-black">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style="background-image: url('wweb-collection%20image/electro-pro.png');"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F19] to-transparent opacity-50">
-                            </div>
+
                             <div class="absolute top-4 left-4 flex gap-2">
                                 <span
-                                    class="bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-display font-medium px-3 py-1 rounded-full uppercase tracking-wider"
+                                    class="bg-white border-2 border-black text-black text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider"
                                     data-key="p_portfolio">პორტფოლიო</span>
                             </div>
                             <div
-                                class="absolute top-4 right-4 bg-secondary text-white font-display font-black px-3 py-1 rounded-sm border border-secondary/50 transform -rotate-2 shadow-glass text-[10px] uppercase tracking-wider">
+                                class="absolute top-4 right-4 bg-secondary text-black font-display font-black px-3 py-1 rounded-sm border-2 border-black transform -rotate-2 shadow-sm text-xs uppercase tracking-wider">
                                 FRONTEND ONLY
                             </div>
                         </div>
                         <div class="p-8">
                             <div class="flex items-center gap-2 mb-4">
-                                <span class="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></span>
-                                <span class="text-xs font-display font-medium text-gray-400 uppercase tracking-widest"
+                                <span class="w-3 h-3 bg-green-500 rounded-full border border-black"></span>
+                                <span class="text-xs font-display font-bold text-gray-500 uppercase tracking-widest"
                                     data-key="p_live">ჰაერშია</span>
                             </div>
-                            <h3 class="text-2xl font-display font-bold text-white mb-3">Electro-Pro</h3>
-                            <p class="text-gray-400 text-sm mb-6 leading-relaxed font-light" data-key="p2_desc">
+                            <h3 class="text-2xl font-display font-black text-black mb-3">Electro-Pro</h3>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed font-medium" data-key="p2_desc">
                                 "ელექტრო-ტექნიკური მომსახურების სავიზიტო ვებსაიტი. ვიზუალურად წარმოაჩენს სერვისებს."
                             </p>
                             <button
-                                class="project-view-btn inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-primary hover:text-white transition-colors border-b-2 border-transparent hover:border-white pb-1"
+                                class="project-view-btn inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-black hover:text-primary transition-colors border-2 border-transparent hover:border-b-black pb-1"
                                 data-image="wweb-collection%20image/ELECTRO_PRO.png" data-title="Electro-Pro">
                                 <span data-key="p_view_case">ქეისის ნახვა</span>
                                 <span class="material-icons-round text-lg">arrow_outward</span>
                             </button>
                         </div>
                     </div>
+
+
                 </div>
 
                 <!-- Current Works Section -->
-                <div class="gs-reveal" style="margin-top: 40px; margin-bottom: 70px;">
+                <div class="" style="margin-top: 40px; margin-bottom: 70px;">
                     <div class="flex items-center gap-3 mb-2">
-                        <span class="h-1 w-12 bg-gray-600 rounded-full"></span>
-                        <span class="text-gray-400 font-display font-bold uppercase tracking-widest text-sm"
+                        <span class="h-1 w-12 bg-black rounded-full"></span>
+                        <span class="text-black font-display font-bold uppercase tracking-widest text-sm"
                             data-key="current_works_title">მიმდინარე სამუშაოები</span>
                     </div>
-                    <p class="text-gray-400 text-lg font-light max-w-2xl" data-key="cw_desc">
+                    <p class="text-gray-600 text-lg font-medium max-w-2xl" data-key="cw_desc">
                         პროექტები, რომლებიც ამჟამად მუშავდება და მალე გაეშვება.
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 gs-reveal">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- NewCarGe Project -->
                     <div
-                        class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-glass hover:shadow-neon-yellow transition-all duration-300 overflow-hidden hover:-translate-y-2">
-                        <div class="h-56 bg-[#0B0F19] relative overflow-hidden border-b border-white/10">
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                        class=" group bg-white border-2 border-black rounded-3xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 overflow-hidden">
+                        <div class="h-56 bg-gray-100 relative overflow-hidden border-b-2 border-black">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                                 style="background-image: url('wweb-collection%20image/NewCarGe.jpeg');"></div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F19] to-transparent opacity-50">
-                            </div>
                             <div class="absolute top-4 left-4 flex gap-2">
                                 <span
-                                    class="bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-display font-medium px-3 py-1 rounded-full uppercase tracking-wider"
+                                    class="bg-white border-2 border-black text-black text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider"
                                     data-key="p_dev">მუშავდება</span>
                             </div>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-2xl font-display font-bold text-white mb-3">NewCarGe</h3>
-                            <p class="text-gray-400 text-sm mb-6 leading-relaxed font-light" data-key="p_newcarge_desc">
-                                ავტომობილის დისტანციური მომსახურება ევაკუატორი, დითეილინგი, დიაგნოსტიკა,— ყველაფერი ერთ
-                                ეკოსისტემაში.
+                            <h3 class="text-2xl font-display font-black text-black mb-3">NewCarGe</h3>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed font-medium"
+                                data-key="p_newcarge_desc">
+                                ავტომობილის დისტანციური
+                                მომსახურება
+                                ევაკუატორი, დითეილინგი, დიაგნოსტიკა,— ყველაფერი ერთ ეკოსისტემაში.
                             </p>
-                            <a class="inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-primary hover:text-white transition-colors border-b-2 border-transparent hover:border-white pb-1"
+                            <a class="inline-flex items-center gap-2 text-sm font-display font-bold uppercase tracking-wider text-black hover:text-primary transition-colors border-2 border-transparent hover:border-b-black pb-1"
                                 href="https://www.newcarge.com/" target="_blank">
                                 <span data-key="p_view_case">ქეისის ნახვა</span>
                                 <span class="material-icons-round text-lg">arrow_outward</span>
@@ -1350,66 +1577,73 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
-        <section id="contact" class="py-24 border-t border-white/10 relative overflow-hidden bg-transparent">
-            <!-- Central Glow from Background (Instead of canvas if we use global math canvas) -->
+        <section id="contact" class="py-24 border-t-2 border-black bg-white relative overflow-hidden">
+            <canvas id="alegriaMatrix" class="absolute inset-0 w-full h-full z-0"></canvas>
+            <!-- Decorator -->
+            <!-- <div
+                class="absolute bottom-10 right-10 w-64 h-64 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20">
+            </div>
+            <div
+                class="absolute top-10 left-10 w-64 h-64 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-20">
+            </div> -->
+
             <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 relative z-10">
                 <!-- Contact Info -->
                 <div
-                    class="space-y-12 bg-white/5 backdrop-blur-xl border border-white/10 p-5 md:p-10 rounded-3xl shadow-glass">
-                    <div>
-                        <h2 class="text-4xl md:text-6xl font-display font-black text-white mb-6"
+                    class="space-y-12 bg-white/50 backdrop-blur-md border-2 border-black p-5 md:p-10 rounded-3xl shadow-hard">
+                    <div class="">
+                        <h2 class="text-4xl md:text-6xl font-display font-black text-black mb-6"
                             data-key="contact_title">კონტაქტი</h2>
-                        <p class="text-gray-400 text-lg leading-relaxed font-light" data-key="contact_desc">
+                        <p class="text-gray-600 text-lg leading-relaxed font-medium" data-key="contact_desc">
                             გაქვთ იდეა? მოდით განვიხილოთ როგორ შეგვიძლია ვითანამშრომლოთ.
                         </p>
                     </div>
 
                     <div class="space-y-8">
-                        <div class="flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
+                        <div class=" flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
                             <div
-                                class="w-14 h-14 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center text-primary shadow-glass group-hover:bg-primary/10 transition-colors duration-300">
+                                class="w-14 h-14 bg-white border-2 border-black rounded-xl flex items-center justify-center text-black shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
                                 <span class="material-icons-round text-2xl">email</span>
                             </div>
                             <div class="min-w-0">
-                                <p class="text-xs font-medium text-gray-500 uppercase tracking-widest mb-1"
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1"
                                     data-key="contact_info_email">ელ-ფოსტა</p>
                                 <div class="flex items-center gap-3">
                                     <a href="mailto:contact@cyron.dev" id="contact-email"
-                                        class="text-lg md:text-xl font-display font-bold text-white hover:text-primary transition-colors break-all">contact@cyron.dev</a>
+                                        class="text-lg md:text-xl font-display font-bold text-black hover:text-primary transition-colors break-all">contact@cyron.dev</a>
                                     <button onclick="copyToClipboard('contact@cyron.dev', this)"
-                                        class="text-gray-500 hover:text-primary transition-colors p-1"
+                                        class="text-gray-400 hover:text-primary transition-colors p-1"
                                         title="Copy Email">
                                         <span class="material-icons-round text-lg">content_copy</span>
                                     </button>
                                     <span
-                                        class="text-xs text-green-400 font-bold opacity-0 transition-opacity duration-300"
+                                        class="text-xs text-green-500 font-bold opacity-0 transition-opacity duration-300"
                                         data-key="copied_msg">დაკოპირდა</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
+                        <div class=" flex flex-wrap sm:flex-nowrap items-start gap-4 md:gap-6 group">
                             <div
-                                class="w-14 h-14 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center text-primary shadow-glass group-hover:bg-primary/10 transition-colors duration-300">
+                                class="w-14 h-14 bg-white border-2 border-black rounded-xl flex items-center justify-center text-black shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
                                 <span class="material-icons-round text-2xl">phone</span>
                             </div>
                             <div class="min-w-0">
-                                <p class="text-xs font-medium text-gray-500 uppercase tracking-widest mb-1"
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1"
                                     data-key="contact_info_phone">ტელეფონი</p>
                                 <div class="flex items-center gap-3">
                                     <a href="tel:+995598173130" id="contact-phone"
-                                        class="text-lg md:text-xl font-display font-bold text-white hover:text-primary transition-colors break-all">+995
+                                        class="text-lg md:text-xl font-display font-bold text-black hover:text-primary transition-colors break-all">+995
                                         598 17 31 30</a>
                                     <button onclick="copyToClipboard('+995 598 17 31 30', this)"
-                                        class="text-gray-500 hover:text-primary transition-colors p-1"
+                                        class="text-gray-400 hover:text-primary transition-colors p-1"
                                         title="Copy Phone">
                                         <span class="material-icons-round text-lg">content_copy</span>
                                     </button>
                                     <span
-                                        class="text-xs text-green-400 font-bold opacity-0 transition-opacity duration-300"
+                                        class="text-xs text-green-500 font-bold opacity-0 transition-opacity duration-300"
                                         data-key="copied_msg">დაკოპირდა</span>
                                 </div>
                             </div>
@@ -1420,12 +1654,13 @@
                                 navigator.clipboard.writeText(text).then(() => {
                                     const icon = btn.querySelector('span');
                                     const successMsg = btn.nextElementSibling;
+                                    const originalIcon = icon.innerText;
                                     icon.innerText = 'check';
-                                    icon.classList.add('text-green-400');
+                                    icon.classList.add('text-green-500');
                                     successMsg.style.opacity = '1';
                                     setTimeout(() => {
                                         icon.innerText = 'content_copy';
-                                        icon.classList.remove('text-green-400');
+                                        icon.classList.remove('text-green-500');
                                         successMsg.style.opacity = '0';
                                     }, 2000);
                                 }).catch(err => {
@@ -1434,61 +1669,107 @@
                             }
                         </script>
 
-                        <div class="pt-8 border-t border-white/10">
-                            <p class="text-xs font-medium text-gray-500 uppercase tracking-widest mb-6"
+                        <div class="pt-8 border-t-2 border-gray-100">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6"
                                 data-key="contact_info_social">სოციალური ქსელები</p>
                             <div class="flex gap-4">
+
                                 <div class="flex flex-wrap gap-4 md:gap-6 justify-center md:justify-start">
+
                                     <!-- LinkedIn -->
-                                    <a class="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform"
+                                    <a class="flex flex-col items-center gap-2 group"
                                         href="https://www.linkedin.com/in/mate-akhalaia-054541394" target="_blank">
                                         <div
-                                            class="w-12 h-12 bg-white/5 border border-white/20 rounded-full flex items-center justify-center text-white shadow-glass group-hover:bg-[#0077b5]/20 group-hover:border-[#0077b5]/50 group-hover:text-[#0077b5] transition-all">
-                                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                            class="w-12 h-12 bg-[#0077b5] border-2 border-black rounded-full flex items-center justify-center text-white shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
+                                            <span class="sr-only">LinkedIn</span>
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                 <path
-                                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                                                </path>
                                             </svg>
                                         </div>
+                                        <span
+                                            class="text-[10px] font-bold uppercase tracking-wider text-gray-600 group-hover:text-black transition-colors">LinkedIn</span>
                                     </a>
 
                                     <!-- WhatsApp -->
-                                    <a class="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform"
-                                        href="https://wa.me/995598173130" target="_blank">
+                                    <a class="flex flex-col items-center gap-2 group" href="https://wa.me/995598173130"
+                                        target="_blank">
                                         <div
-                                            class="w-12 h-12 bg-white/5 border border-white/20 rounded-full flex items-center justify-center text-white shadow-glass group-hover:bg-[#25D366]/20 group-hover:border-[#25D366]/50 group-hover:text-[#25D366] transition-all">
-                                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                                            class="w-12 h-12 bg-[#25D366] border-2 border-black rounded-full flex items-center justify-center text-white shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
+                                            <span class="sr-only">WhatsApp</span>
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                                 <path
-                                                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+                                                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.015-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                                             </svg>
                                         </div>
+                                        <span
+                                            class="text-[10px] font-bold uppercase tracking-wider text-gray-600 group-hover:text-black transition-colors">WhatsApp</span>
                                     </a>
 
                                     <!-- Telegram -->
-                                    <a class="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform"
-                                        href="https://t.me/cyrondev" target="_blank">
+                                    <a class="flex flex-col items-center gap-2 group" href="https://t.me/cyrondev"
+                                        target="_blank">
                                         <div
-                                            class="w-12 h-12 bg-white/5 border border-white/20 rounded-full flex items-center justify-center text-white shadow-glass group-hover:bg-[#0088cc]/20 group-hover:border-[#0088cc]/50 group-hover:text-[#0088cc] transition-all">
-                                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                            class="w-12 h-12 bg-[#0088cc] border-2 border-black rounded-full flex items-center justify-center text-white shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
+                                            <span class="sr-only">Telegram</span>
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                                 <path
-                                                    d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.618-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                                                    d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.618-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z">
+                                                </path>
                                             </svg>
                                         </div>
+                                        <span
+                                            class="text-[10px] font-bold uppercase tracking-wider text-gray-600 group-hover:text-black transition-colors">Telegram</span>
                                     </a>
+
+                                    <!-- Viber -->
+                                    <a class="flex flex-col items-center gap-2 group"
+                                        href="viber://chat?number=%2B995598173130" target="_blank">
+                                        <div
+                                            class="w-12 h-12 bg-[#665CAC] border-2 border-black rounded-full flex items-center justify-center text-white shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
+                                            <span class="sr-only">Viber</span>
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 32 32">
+                                                <path
+                                                    d="M11.5432 12.1345L11.5026 12.157L11.4668 12.1866C11.1902 12.4154 10.7756 13.0434 11.1388 13.8197C11.4414 14.4665 12.1157 15.7874 13.3005 16.7826C14.4592 17.756 15.6965 18.2795 16.5092 18.4509L16.5603 18.4617H16.6069C16.6091 18.4619 16.614 18.4624 16.6219 18.4636C16.6412 18.4663 16.6645 18.4703 16.7012 18.4767L16.7874 17.9842L16.7012 18.4767C16.7075 18.4778 16.714 18.479 16.7208 18.4802C16.9709 18.5244 17.5704 18.6304 18.0729 18.1297C18.3954 17.8083 18.6898 17.4732 18.8165 17.3225C18.9055 17.2413 19.1956 17.0731 19.5626 17.1972C20.2576 17.4321 21.0839 17.9621 21.4833 18.2308C21.7925 18.439 22.4924 18.9404 22.8079 19.1682L22.8082 19.1684C22.8344 19.1873 22.8959 19.2493 22.9291 19.3354C22.9557 19.4042 22.97 19.4988 22.9061 19.6357C22.7875 19.8895 22.4266 20.374 21.9378 20.7978C21.4401 21.2294 20.9222 21.5 20.5072 21.5C20.5087 21.5 20.5072 21.4998 20.5025 21.4992C20.484 21.4967 20.4153 21.4874 20.2792 21.4568C20.1262 21.4225 19.9195 21.3686 19.6669 21.2926C19.1622 21.1407 18.485 20.904 17.7029 20.5675C16.1375 19.8941 14.1668 18.8277 12.3218 17.2572C11.1613 16.2694 10.0664 14.9036 9.2138 13.6251C8.35407 12.3358 7.77896 11.1932 7.62244 10.6655L7.61148 10.6285L7.595 10.5937C7.55603 10.5114 7.50112 10.3355 7.50002 10.136C7.49895 9.94333 7.54725 9.75923 7.67465 9.60657C8.09467 9.10322 8.53938 8.60859 9.52049 8.13395C9.61188 8.08974 9.75504 8.05076 9.89575 8.04849C10.04 8.04617 10.1152 8.082 10.1452 8.10835C10.5206 8.43751 11.1025 9.01857 11.4945 9.51513C11.6971 9.77164 11.9418 10.0975 12.1458 10.3806C12.2478 10.5222 12.3377 10.6506 12.4062 10.7527C12.4405 10.8039 12.4679 10.8462 12.4881 10.8788C12.5019 10.9012 12.5093 10.9143 12.5124 10.9199C12.5141 10.9256 12.5218 10.9498 12.5286 10.9939C12.5371 11.0494 12.5411 11.1177 12.5354 11.1891C12.5235 11.3351 12.4755 11.4524 12.3892 11.5315ZM16.2766 6.51613C16.2769 6.51585 16.2772 6.51557 16.2775 6.51527C16.2847 6.50852 16.2994 6.5 16.3226 6.5C20.3145 6.5 23.4984 9.53785">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span
+                                            class="text-[10px] font-bold uppercase tracking-wider text-gray-600 group-hover:text-black transition-colors">Viber</span>
+                                    </a>
+
+                                    <!-- Facebook -->
+                                    <a class="flex flex-col items-center gap-2 group"
+                                        href="https://www.facebook.com/profile.php?id=61585365102189" target="_blank">
+                                        <div
+                                            class="w-12 h-12 bg-[#1877F2] border-2 border-black rounded-full flex items-center justify-center text-white shadow-hard group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all duration-300">
+                                            <span class="sr-only">Facebook</span>
+                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.47h3.047v-2.612c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.491 0-1.956.925-1.956 1.874v2.22h3.328l-.532 3.47h-2.796v8.385c5.737-.9 10.125-5.864 10.125-11.854z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span
+                                            class="text-[10px] font-bold uppercase tracking-wider text-gray-600 group-hover:text-black transition-colors">Facebook</span>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form / Action Box -->
-                <div class="relative w-full max-w-md md:max-w-none mx-auto">
+                <!-- Contact Form -->
+                <div class=" relative w-full max-w-md md:max-w-none mx-auto">
                     <div
-                        class="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-10 rounded-3xl shadow-glass relative z-10 space-y-6 flex flex-col items-center justify-center min-h-[400px]">
+                        class="bg-white/50 backdrop-blur-md border-2 border-black p-6 md:p-10 rounded-3xl shadow-hard relative z-10 space-y-6 flex items-center justify-center">
                         <div class="text-center w-full">
                             <img src="images/CYRON.webp" alt="Cyron" loading="lazy"
-                                class="w-48 md:w-64 h-auto object-contain mx-auto mb-10 hover:-translate-y-2 transition-transform duration-300 filter drop-shadow-neon-yellow brightness-200">
+                                class="w-48 md:w-64 h-auto object-contain mx-auto mb-6 hover:-translate-y-2 transition-transform duration-300">
                             <button onclick="openHireMeModal()"
-                                class="w-full bg-primary/90 hover:bg-primary text-black font-display font-black text-lg py-4 border border-primary/50 rounded-xl shadow-neon-yellow hover:shadow-[0_0_25px_#facc15] transition-all uppercase tracking-wider"
+                                class="w-full bg-primary hover:bg-yellow-300 text-black font-display font-black text-lg py-4 border-2 border-black rounded-xl shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all uppercase tracking-wider"
                                 data-key="btn_hire_me">
                                 დამიქირავე
                             </button>
@@ -1498,115 +1779,77 @@
             </div>
         </section>
     </main>
-
-    <!-- Hire Me Modal -->
     <div id="hire-me-modal"
-        class="fixed inset-0 z-[150] flex flex-col items-center justify-center bg-[#0B0F19]/80 backdrop-blur-xl transition-opacity duration-300 pointer-events-none opacity-0 px-4">
+        class="fixed inset-0 z-[150] flex items-center justify-center bg-black/50 backdrop-blur-md transition-opacity duration-300 pointer-events-none opacity-0 px-4">
         <div
-            class="modal-content bg-[#0B0F19] border border-white/10 p-5 md:p-8 rounded-3xl w-full max-w-md relative shadow-glass max-h-[85vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
-
-            <!-- Close Button -->
+            class="modal-content bg-white border-2 border-black p-5 md:p-8 rounded-3xl w-full max-w-md relative shadow-2xl max-h-[85vh] overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent">
             <button onclick="closeHireMeModal()"
-                class="absolute top-4 right-4 bg-white/5 border border-white/20 rounded-full p-2 hover:bg-white/10 hover:text-red-400 text-gray-400 transition-all z-10 shadow-sm">
+                class="absolute top-4 right-4 bg-white border-2 border-black rounded-full p-2 hover:bg-red-500 hover:text-white transition-all z-10 shadow-sm">
                 <span class="material-icons-round text-lg">close</span>
             </button>
             <h2
-                class="font-display font-black text-2xl md:text-3xl text-white mb-6 uppercase tracking-wider sticky top-0 bg-[#0B0F19]/90 backdrop-blur z-0 py-2 border-b border-white/10">
+                class="font-display font-black text-2xl md:text-3xl text-black mb-6 uppercase tracking-wider sticky top-0 bg-white z-0 py-2 border-b-2 border-gray-100">
                 პროექტის დაჯავშნა</h2>
 
             <form id="hire-me-form" class="space-y-4">
-                <style>
-                    .cyber-input-dark {
-                        width: 100%;
-                        background: rgba(255, 255, 255, 0.05);
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        border-radius: 0.75rem;
-                        padding: 0.75rem 1rem;
-                        color: white !important;
-                        font-family: inherit;
-                        transition: all 0.3s ease;
-                        outline: none;
-                    }
-
-                    .cyber-input-dark:focus {
-                        border-color: #facc15;
-                        box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
-                        background: rgba(255, 255, 255, 0.08);
-                    }
-
-                    .cyber-input-dark::placeholder {
-                        color: rgba(255, 255, 255, 0.3);
-                    }
-
-                    /* Add this rule to make inputs light color when using dark theme */
-                    ::-webkit-calendar-picker-indicator {
-                        filter: invert(1);
-                    }
-                </style>
                 <!-- Date & Time (Grid) -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label
-                            class="block text-[10px] font-medium uppercase tracking-widest text-gray-400 mb-1">თარიღი</label>
-                        <input type="date" id="hire-date" class="cyber-input-dark">
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">თარიღი</label>
+                        <input type="date" id="hire-date" class="cyber-input bg-yellow-300">
                     </div>
                     <div>
-                        <label
-                            class="block text-[10px] font-medium uppercase tracking-widest text-gray-400 mb-1">დრო</label>
-                        <input type="time" id="hire-time" class="cyber-input-dark">
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">დრო</label>
+                        <input type="time" id="hire-time" class="cyber-input bg-green-300">
                     </div>
                 </div>
 
                 <!-- Name & Phone (Grid) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label
-                            class="block text-[10px] font-medium uppercase tracking-widest text-gray-400 mb-1">სახელი</label>
-                        <input type="text" id="hire-name" required autocomplete="off" class="cyber-input-dark">
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">სახელი</label>
+                        <input type="text" id="hire-name" required autocomplete="off" class="cyber-input bg-purple-300">
                     </div>
                     <div>
-                        <label
-                            class="block text-[10px] font-medium uppercase tracking-widest text-gray-400 mb-1">ტელეფონი</label>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">ტელეფონი</label>
                         <input type="tel" id="hire-phone" placeholder="5xx xx xx xx" required autocomplete="off"
-                            class="cyber-input-dark">
+                            class="cyber-input bg-pink-300">
                     </div>
                 </div>
 
                 <!-- Email -->
                 <div>
-                    <label
-                        class="block text-[10px] font-medium uppercase tracking-widest text-gray-400 mb-1">ელ-ფოსტა</label>
+                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">ელ-ფოსტა</label>
                     <input type="email" id="hire-email" placeholder="mail@example.com" required autocomplete="off"
-                        class="cyber-input-dark">
+                        class="cyber-input bg-blue-300">
                 </div>
 
                 <!-- Comment -->
                 <div>
-                    <label
-                        class="block text-[10px] font-medium uppercase tracking-widest text-gray-400 mb-1">კომენტარი</label>
-                    <textarea id="hire-comment" rows="3" class="cyber-input-dark resize-none"
+                    <label class="block text-xs font-bold uppercase text-gray-500 mb-1">კომენტარი</label>
+                    <textarea id="hire-comment" rows="3" class="cyber-input resize-none bg-orange-300"
                         placeholder="..."></textarea>
-                    <div class="text-[10px] text-gray-500 text-right mt-1 font-medium"><span
-                            id="char-count">0</span>/1000</div>
+                    <div class="text-[10px] text-gray-400 text-right mt-1 font-bold"><span id="char-count">0</span>/1000
+                    </div>
                 </div>
 
                 <div class="pt-4">
                     <button type="submit"
-                        class="w-full bg-primary/90 text-black font-display font-black py-4 uppercase tracking-widest hover:bg-primary transition-all shadow-neon-yellow border border-primary/50 rounded-xl text-sm md:text-base">
+                        class="w-full bg-primary text-black font-display font-black py-4 uppercase tracking-widest hover:bg-yellow-400 transition-all shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none border-2 border-black rounded-xl text-sm md:text-base">
                         გაგზავნა
                     </button>
                 </div>
 
                 <!-- Contact Info Section -->
-                <div class="mt-6 pt-6 border-t border-white/10 text-center">
+                <div class="mt-6 pt-6 border-t-2 border-gray-100 text-center">
                     <div class="flex flex-col gap-3">
                         <a href="mailto:contact@cyron.dev"
-                            class="text-gray-400 hover:text-primary transition-colors font-display font-light text-xs md:text-sm flex items-center justify-center gap-2">
+                            class="text-gray-600 hover:text-black transition-colors font-display font-medium text-xs md:text-sm flex items-center justify-center gap-2">
                             <span class="material-icons-round text-base">email</span>
                             contact@cyron.dev
                         </a>
                         <a href="tel:+995598173130"
-                            class="text-gray-400 hover:text-primary transition-colors font-display font-light text-xs md:text-sm flex items-center justify-center gap-2">
+                            class="text-gray-600 hover:text-black transition-colors font-display font-medium text-xs md:text-sm flex items-center justify-center gap-2">
                             <span class="material-icons-round text-base">phone</span>
                             +995 598 17 31 30
                         </a>
@@ -1899,37 +2142,36 @@
     <!-- Theme Toggle Removed -->
 
 
-    <div id="chatbot-container" class="fixed bottom-6 right-6 z-[101] w-14 h-14 font-display">
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-[101] font-body w-14 h-14">
 
         <div id="chat-window"
-            class="hidden fixed md:absolute bottom-24 md:bottom-20 left-4 right-4 md:left-auto md:right-0 w-auto md:w-96 bg-[#0B0F19]/80 backdrop-blur-xl border border-white/10 rounded-3xl shadow-glass overflow-hidden transition-all duration-300 origin-bottom-right z-[102]">
+            class="hidden fixed md:absolute bottom-24 md:bottom-20 left-4 right-4 md:left-auto md:right-0 w-auto md:w-96 bg-white border-2 border-black rounded-3xl shadow-hard overflow-hidden transition-all duration-300 origin-bottom-right z-[102]">
 
             <!-- Header -->
-            <div class="bg-white/5 p-4 border-b border-white/10 flex justify-between items-center backdrop-blur-md">
+            <div class="bg-primary p-4 border-b-2 border-black flex justify-between items-center">
                 <div class="flex items-center gap-2">
-                    <div
-                        class="w-8 h-8 bg-primary/20 border border-primary/50 rounded-full flex items-center justify-center shadow-[0_0_10px_#facc1555]">
-                        <span class="material-icons-round text-primary text-sm shadow-neon-yellow">smart_toy</span>
+                    <div class="w-8 h-8 bg-white border-2 border-black rounded-full flex items-center justify-center">
+                        <span class="material-icons-round text-black text-sm">smart_toy</span>
                     </div>
-                    <span class="font-display font-black text-white tracking-widest text-sm uppercase"
+                    <span class="font-display font-black text-black tracking-widest text-sm uppercase"
                         data-key="chat_header">AI System</span>
                 </div>
                 <button id="chatbot-close-btn"
-                    class="w-8 h-8 bg-white/5 border border-white/20 rounded-full flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-red-400 transition-all cursor-pointer shadow-glass">
+                    class="w-8 h-8 bg-white border-2 border-black rounded-full flex items-center justify-center text-black hover:bg-red-500 hover:text-white transition-all cursor-pointer">
                     <span class="material-icons-round text-sm">close</span>
                 </button>
             </div>
 
             <!-- Messages Area -->
             <div id="chat-messages"
-                class="h-80 overflow-y-auto p-4 space-y-4 text-gray-300 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                class="h-80 overflow-y-auto p-4 space-y-4 bg-gray-50 scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent">
                 <div class="flex gap-3">
                     <div
-                        class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center shrink-0 shadow-[0_0_15px_#facc1533]">
-                        <span class="material-icons-round text-primary text-base">smart_toy</span>
+                        class="w-10 h-10 rounded-xl bg-white border-2 border-black flex items-center justify-center shrink-0 shadow-sm">
+                        <span class="material-icons-round text-black text-base">smart_toy</span>
                     </div>
                     <div
-                        class="bg-white/10 text-gray-200 p-3 rounded-2xl rounded-tl-none border border-white/10 text-sm font-light leading-relaxed shadow-glass relative backdrop-blur-md">
+                        class="bg-white text-black p-3 rounded-2xl rounded-tl-none border-2 border-black text-sm font-medium leading-relaxed shadow-sm relative">
                         <span data-key="chat_initial_msg">გამარჯობა! მე ვარ შენი AI ასისტენტი. რით შემიძლია
                             დაგეხმაროთ?</span>
                     </div>
@@ -1938,12 +2180,12 @@
                 <!-- Quick Questions -->
                 <div class="flex flex-col gap-2 mt-2 ml-12">
                     <button
-                        class="quick-question-btn text-left bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/50 text-gray-300 hover:text-primary text-xs font-medium py-2 px-3 rounded-xl transition-all shadow-sm"
+                        class="quick-question-btn text-left bg-white border-2 border-black hover:bg-black hover:text-white text-black text-xs font-bold py-2 px-3 rounded-xl transition-all shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px]"
                         data-question="chat_q1">
                         <span data-key="chat_q1">რა გავაკეთო შეკვეთის გასაფორმებლად?</span>
                     </button>
                     <button
-                        class="quick-question-btn text-left bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/50 text-gray-300 hover:text-primary text-xs font-medium py-2 px-3 rounded-xl transition-all shadow-sm"
+                        class="quick-question-btn text-left bg-white border-2 border-black hover:bg-black hover:text-white text-black text-xs font-bold py-2 px-3 rounded-xl transition-all shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px]"
                         data-question="chat_q2">
                         <span data-key="chat_q2">რა სერვისები გაქვთ?</span>
                     </button>
@@ -1951,13 +2193,13 @@
             </div>
 
             <!-- Input Area -->
-            <div class="p-3 bg-white/5 border-t border-white/10 backdrop-blur-md">
+            <div class="p-3 bg-white border-t-2 border-black">
                 <form id="chat-form" class="flex gap-2 mb-0">
                     <input type="text" id="chat-input" placeholder="შეიყვანეთ ბრძანება..." autocomplete="off"
                         data-key="chat_input_placeholder"
-                        class="w-full bg-white/5 border border-white/10 rounded-xl text-white text-sm px-3 py-2 focus:bg-white/10 focus:border-primary/50 focus:outline-none transition-all placeholder-gray-500 font-light shadow-inner">
+                        class="w-full bg-gray-100 border-2 border-black rounded-xl text-black text-sm px-3 py-2 focus:bg-white focus:outline-none transition-all placeholder-gray-500 font-medium">
                     <button type="submit"
-                        class="bg-primary/90 text-black px-3 py-2 rounded-xl hover:bg-primary shadow-neon-yellow transition-all cursor-pointer flex items-center justify-center font-bold">
+                        class="bg-black text-white px-3 py-2 rounded-xl hover:bg-primary hover:text-black hover:border-black border-2 border-transparent transition-all cursor-pointer flex items-center justify-center font-bold">
                         <span class="material-icons-round text-lg">arrow_upward</span>
                     </button>
                 </form>
@@ -1965,21 +2207,139 @@
         </div>
 
         <div id="chatbot-greeting"
-            class="absolute bottom-20 right-0 bg-[#0B0F19]/90 backdrop-blur-xl border border-white/10 p-3 rounded-2xl rounded-br-none shadow-glass animate-bounce cursor-pointer whitespace-nowrap hidden md:block"
+            class="absolute bottom-20 right-0 bg-white border-2 border-black p-3 rounded-2xl rounded-br-none shadow-hard animate-bounce cursor-pointer whitespace-nowrap hidden md:block"
             onclick="document.getElementById('chatbot-toggle-btn').click()">
-            <p class="text-xs text-white font-medium text-center tracking-wide">
+            <p class="text-xs text-black font-bold text-center tracking-wide">
                 <span data-key="chat_greeting_bubble">რით შემიძლია დაგეხმაროთ?</span>
             </p>
         </div>
 
         <button id="chatbot-toggle-btn"
-            class="absolute bottom-0 right-0 w-14 h-14 bg-primary text-black rounded-2xl border border-primary/50 shadow-neon-yellow hover:shadow-[0_0_25px_#facc15] transition-all duration-300 flex items-center justify-center cursor-pointer z-50 group hover:scale-105">
+            class="absolute bottom-0 right-0 w-14 h-14 bg-primary text-black rounded-2xl border-2 border-black shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-300 flex items-center justify-center cursor-pointer z-50 group">
             <span class="material-icons-round text-3xl group-hover:rotate-12 transition-transform"
                 id="chat-icon">smart_toy</span>
         </button>
     </div>
     <script src="chatbot.js" defer></script>
+
     <script src="script.js" defer></script>
+
+    <script>
+        (function () {
+            const canvas = document.getElementById('alegriaMatrix');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const contactSection = document.getElementById('contact');
+
+            // 🎨 ფერების პალიტრა (Cyron Logo Colors)
+            const colors = [
+                '#FF4F58', // Red/Pink
+                '#2D7FF9', // Blue
+                '#2ECC71', // Green
+                '#FDC830', // Yellow
+                '#FF9F1C', // Orange
+                '#103842'  // Deep Teal (კონტრასტისთვის)
+            ];
+
+            let fontSize = 24; // შრიფტის ზომა
+            let columns;
+            let drops = [];
+
+            // ⚙️ 4K / Retina კონფიგურაცია
+            function resizeCanvas() {
+                if (!contactSection) return;
+
+                // ვიღებთ ეკრანის პიქსელების სიმჭიდროვეს
+                const dpr = window.devicePixelRatio || 1;
+                const rect = contactSection.getBoundingClientRect();
+
+                // ტილოს ფიზიკურ ზომას ვზრდით ხარისხის მიხედვით, სექციის ზომებზე დაყრდნობით
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+
+                // ყველა ხატვის ოპერაციას ვასკეილირებთ
+                ctx.scale(dpr, dpr);
+
+                // სვეტების გადათვლა
+                columns = Math.ceil(rect.width / fontSize);
+
+                // მასივის შევსება (თუ ახალია ან ზომა შეიცვალა)
+                if (drops.length === 0 || drops.length !== columns) {
+                    drops = [];
+                    for (let x = 0; x < columns; x++) {
+                        drops[x] = Math.random() * -100; // სხვადასხვა სიმაღლიდან დაწყება
+                    }
+                }
+            }
+
+            // სიმბოლოები
+            const chars = "0123456789";
+
+            // ⏱️ სიჩქარის კონტროლი
+            let fps = 20;
+            let now;
+            let then = Date.now();
+            let interval = 1000 / fps;
+            let delta;
+
+            function draw() {
+                // ანიმაციის ციკლის მოთხოვნა
+                requestAnimationFrame(draw);
+
+                now = Date.now();
+                delta = now - then;
+
+                // თუ საკმარისი დრო გავიდა, ვხატავთ ახალ კადრს
+                if (delta > interval) {
+                    then = now - (delta % interval);
+
+                    // 1. ფონი (Fade effect) - თეთრი ფონი გამჭვირვალობით
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.18)';
+                    // სექციის ზომის აღება ყოველი კადრისთვის საჭირო არაა, რადგან canvas.width/height უკვე გასწორებულია resizeCanvas-ში
+                    // მაგრამ fillRect იყენებს ლოგიკურ კოორდინატებს (CSS pixels) scale-ის გამო
+                    const width = canvas.width / (window.devicePixelRatio || 1);
+                    const height = canvas.height / (window.devicePixelRatio || 1);
+
+                    ctx.fillRect(0, 0, width, height);
+
+                    // 2. ტექსტის პარამეტრები
+                    ctx.font = "900 " + fontSize + "px 'Nunito'";
+                    ctx.textAlign = "center";
+
+                    // 3. ციფრების ხატვა
+                    for (let i = 0; i < drops.length; i++) {
+                        // ფერის არჩევა
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        ctx.fillStyle = randomColor;
+
+                        // სიმბოლოს არჩევა
+                        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+
+                        // ხატვა (X: სვეტი * ზომა, Y: წვეთი * ზომა)
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                        // 4. პოზიციის განახლება
+                        // თუ გასცდა სექციის სიმაღლეს
+                        if (drops[i] * fontSize > height && Math.random() > 0.98) {
+                            drops[i] = 0;
+                        }
+
+                        drops[i]++;
+                    }
+                }
+            }
+
+            // ინიციალიზაცია
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // ფონტის ჩატვირთვის ლოდინი
+            document.fonts.ready.then(function () {
+                draw();
+            });
+        })();
+    </script>
 
 </body>
 
